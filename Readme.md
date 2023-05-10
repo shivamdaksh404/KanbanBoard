@@ -2,8 +2,10 @@ KANBAN BOARD
 
 1. create Vite
 2.Create Folder Structure
-  a.
+
+
 3. Install dependencies
+
    a. Recoil
    b. Material UI
    c. React DragNDrop / React Beautiful DnD
