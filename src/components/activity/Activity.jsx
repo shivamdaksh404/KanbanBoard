@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function activity() {
+export default function Activity() {
   return (
     <div>activity</div>
   )
