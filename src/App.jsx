@@ -1,14 +1,9 @@
+import React from 'react'
 
-
-function App() {
-
+export default function App() {
   return (
-    <div >
-    <h1>import all component here
-    </h1>
-      
+    <div>
+      <h1>import all compononets here</h1>
     </div>
   )
 }
-
-export default App
