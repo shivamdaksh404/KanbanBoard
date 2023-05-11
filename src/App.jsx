@@ -6,7 +6,7 @@ import PopUp from "./components/popup/PopUp";
 export default function App() {
   return (
     <Grid container>
-      <Grid item md={3} sx={{ border: "1px solid" }}>
+      {/* <Grid item md={3} sx={{ border: "1px solid" }}>
         <Todo />
       </Grid>
 
@@ -16,12 +16,12 @@ export default function App() {
 
       <Grid item md={3} sx={{ border: "1px solid" }}>
         <p>third column</p>
-      </Grid>
+      </Grid> */}
 
       
-      {/* <Grid item md={12}>
+      <Grid item md={12}>
         <PopUp />
-      </Grid> */}
+      </Grid>
     </Grid>
   );
 }
