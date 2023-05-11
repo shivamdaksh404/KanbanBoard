@@ -6,7 +6,7 @@ The folder structure for the project is as follows:
 
 - src/
   - components/
-  - styles/
+  - atom/
   - ...
   
 ## Installation
