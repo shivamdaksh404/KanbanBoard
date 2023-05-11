@@ -19,10 +19,10 @@ const handleShowEdit =(index)=>{
 
   return (
     <div>
-    <div className={style.nameDiv}>
+    {/* <div className={style.nameDiv}>
       <h1>List Name</h1>
       <MoreHorizIcon/>
-    </div>
+    </div> */}
     <div className={style.addCard}>
     <div className={style.todoTasks}>
     {taskData.map((ele,index)=><li key={index} onMouseMove={()=>handleShowEdit(index)} className={style.taskLists}>{ele} 

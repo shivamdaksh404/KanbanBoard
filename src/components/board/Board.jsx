@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import styles from "./Board.module.css";
+import Card from "../card/Card";
 export default function Board() {
   const [data, setData] = useState([]);
   const [isShow, setisShow] = useState(false);
   const [isShowBtn, setisShowBtn] = useState(true);
   const [inputvalue, setinputvalue] = useState("");
+  const [isShowCard, setIsShowCard] = useState(false);
   // let inputvalue;
 
   function handleChange(e) {
@@ -24,6 +26,10 @@ export default function Board() {
     setisShowBtn(true);
     setisShow(false);
   }
+
+  const handleShowCard = () => {
+    setIsShowCard(!isShowCard);
+  };
   return (
     <Grid container>
       {data &&
@@ -31,7 +37,9 @@ export default function Board() {
           <Grid md={3}>
             <div className={styles.card} key={index}>
               <h2>{item}</h2>
-              <button>Add Task</button>
+
+              <Card />
+              {/* <button onClick={handleShowCard}>Add Task</button> */}
             </div>
           </Grid>
         ))}
