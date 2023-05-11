@@ -1,0 +1,34 @@
+.firstTopDiv{
+    border:.1rem solid;
+    border-radius: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.topDiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.SecondDiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Span{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.smallCard{
+    border:.1rem solid;
+    border-radius: .5rem;
+    margin: 1rem 0;
+    height:5rem;
+}
+.smallCardHeading{
+    margin-top: 0rem;
+}

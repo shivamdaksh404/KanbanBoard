@@ -1,4 +1,6 @@
 import React from "react";
+
+import Board from "./components/board/Board";
 import { Grid } from "@mui/material";
 import Todo from "./components/todo/Todo";
 import Card from './components/card/Card'
@@ -18,6 +20,7 @@ export default function App() {
       <Grid md={3} sx={{border:'1px solid'}}>
         <p>third column</p>
       </Grid>
+<Board />
   <Card/>
     </Grid>
   );
