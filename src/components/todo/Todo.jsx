@@ -3,12 +3,11 @@ import todo from "./Todo.module.css";
 import SmallCard from "../SmallCard/SmallCard";
 import AddListCard from "../buttons/AddListCard";
 
-export default function Todo() {
-  const [toggle, setToggle] = useState(false);
+import { toggleState } from "../../atom/Atom";
+import { useRecoilState } from "recoil";
 
-  const handleToggle = () => {
-    setToggle(!toggle);
-  };
+export default function Todo() {
+  const [toggle, setToggle] = useRecoilState(toggleState);
 
   return (
     <div className={todo.firstTopDiv}>
@@ -16,8 +15,8 @@ export default function Todo() {
         <h3>To do</h3>
         <span>...</span>
       </div>
-      <button onClick={handleToggle}>Toggle</button> <br/>
-      {toggle ? <SmallCard /> : <AddListCard text={" ➕ Add a list"} />}
+      
+      {!toggle ? <AddListCard text={" ➕ Add a list"} /> : <SmallCard /> }
     </div>
   );
 }
