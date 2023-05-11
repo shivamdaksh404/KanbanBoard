@@ -1,0 +1,14 @@
+.topDiv{
+    display: flex;
+    justify-content: space-between;
+}
+
+.smallCardSecondDiv{
+    display: flex;
+    justify-content: space-between;
+}
+
+.smallCardSpan{
+    display: flex;
+    gap: 1rem;
+}

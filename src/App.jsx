@@ -10,11 +10,11 @@ export default function App() {
       </Grid>
       
       <Grid md={3} sx={{border:'1px solid'}}>
-      <p>second column</p>
+      {/* <p>second column</p> */}
       </Grid>
 
       <Grid md={3} sx={{border:'1px solid'}}>
-        <p>third column</p>
+        {/* <p>third column</p> */}
       </Grid>
     </Grid>
   );
