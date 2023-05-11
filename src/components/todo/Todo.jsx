@@ -1,31 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import todo from "./Todo.module.css";
-import Button from "../button/Button";
+import SmallCard from "../SmallCard/SmallCard";
+import AddListCard from "../buttons/AddListCard";
 
 export default function Todo() {
+  const [toggle, setToggle] = useState(false);
+
+  const handleToggle = () => {
+    setToggle(!toggle);
+  };
+
   return (
     <div className={todo.firstTopDiv}>
       <div className={todo.topDiv}>
         <h3>To do</h3>
         <span>...</span>
       </div>
-
-      <SmallCard />
-      <div className={todo.SecondDiv}>
-        <span className={todo.Span}>
-          <Button buttonName={"Add card"} />
-          <span>❌</span>
-        </span>
-        <span>...</span>
-      </div>
-    </div>
-  );
-}
-
-function SmallCard() {
-  return (
-    <div className={todo.smallCard}>
-      <h4 className={todo.smallCardHeading}>Cook Food</h4>
+      <button onClick={handleToggle}>Toggle</button> <br/>
+      {toggle ? <SmallCard /> : <AddListCard text={" ➕ Add a list"} />}
     </div>
   );
 }

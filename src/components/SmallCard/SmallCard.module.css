@@ -1,0 +1,22 @@
+
+.SecondDiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Span{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.editableBox{
+    margin-top: 0rem;
+    height: 5rem;
+    margin-bottom: 1rem;
+    border: .1rem solid;
+    border-radius: .5rem;
+    padding-left: .3rem;
+    background-color: black;
+    color: white;
+}
