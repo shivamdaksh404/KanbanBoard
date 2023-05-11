@@ -66,4 +66,92 @@ List = {
   ]
 }
 
+// ---------------------------------------------------------------------------------------------
 
+// Define the initial state of the application
+const initialState = {
+  boards: [],
+};
+
+// Define the structure of a board
+const boardSchema = {
+  id: '', // Unique identifier for the board
+  name: '', // Name of the board
+  columns: [], // Array of columns in the board
+};
+
+// Define the structure of a column
+const columnSchema = {
+  id: '', // Unique identifier for the column
+  name: '', // Name of the column
+  tasks: [], // Array of tasks in the column
+};
+
+// Define the structure of a task
+const taskSchema = {
+  id: '', // Unique identifier for the task
+  title: '', // Title of the task
+  description: '', // Description of the task
+  dueDate: '', // Due date of the task
+  priority: '', // Priority level of the task
+  assignee: '', // Assignee of the task
+};
+
+// Define the structure of the application state
+const appSchema = {
+  boards: [boardSchema], // Array of boards
+};
+
+// Sample data based on the schema
+const sampleData = {
+  boards: [
+    {
+      id: 'board1',
+      name: 'Board 1',
+      columns: [
+        {
+          id: 'column1',
+          name: 'To Do',
+          tasks: [
+            {
+              id: 'task1',
+              title: 'Task 1',
+              description: 'Do task 1',
+              dueDate: '2023-05-15',
+              priority: 'High',
+              assignee: 'John',
+            },
+          ],
+        },
+        {
+          id: 'column2',
+          name: 'In Progress',
+          tasks: [
+            {
+              id: 'task2',
+              title: 'Task 2',
+              description: 'Do task 2',
+              dueDate: '2023-05-17',
+              priority: 'Medium',
+              assignee: 'Jane',
+            },
+          ],
+        },
+        {
+          id: 'column3',
+          name: 'Done',
+          tasks: [
+            {
+              id: 'task3',
+              title: 'Task 3',
+              description: 'Do task 3',
+              dueDate: '2023-05-20',
+              priority: 'Low',
+              assignee: 'John',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
