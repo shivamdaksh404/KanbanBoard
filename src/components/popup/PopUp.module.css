@@ -6,6 +6,8 @@
     padding: 0 1.5rem;
     border-radius: .5rem;
     z-index: 10000;
+    /* color: whitesmoke;
+    background-color: black; */
 }
 .title{
     display: flex;
@@ -33,7 +35,7 @@
     background-color: blue;
     padding: .3rem;
 }
-.firstInputBox{
+.paraTwo{
     margin-left: 2.7rem;
     width: 25rem;
     height: 3.5rem;   
@@ -43,12 +45,4 @@
     margin-left: .8rem;
     width: 25rem;
     height: 1.8rem;   
-}
-.comments{
-    margin-left: 1rem;
-}
-.commentsTime{
-    margin-left: 2.9rem;
-    margin-top: 0;
-    font-size: small;
 }
