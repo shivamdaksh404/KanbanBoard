@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "@mui/material";
+import { Grid, listClasses } from "@mui/material";
 import styles from "./Board.module.css";
 import Card from "../card/Card";
+import { useRecoilState } from "recoil";
+import { data } from "../../atom/Atom";
+
 export default function Board() {
-  const [data, setData] = useState([]);
+  const [List, setList] = useRecoilState(data);
+
   const [isShow, setisShow] = useState(false);
   const [isShowBtn, setisShowBtn] = useState(true);
   const [inputvalue, setinputvalue] = useState("");
-  const [isShowCard, setIsShowCard] = useState(false);
-  // let inputvalue;
+  // const [isShowCard, setIsShowCard] = useState(false);
 
   function handleChange(e) {
     setinputvalue(e.target.value);
   }
 
   function handleTaskAdd() {
-    setData((prev) => [...prev, inputvalue]);
+    let newlist = { name: inputvalue, list: [] };
+
+    setList((prev) => [...prev, newlist]);
+    localStorage.setItem("List", JSON.stringify([...List, newlist]));
     setinputvalue("");
+    console.log(List);
   }
   function handleClick() {
     setisShow(true);
@@ -27,20 +34,16 @@ export default function Board() {
     setisShow(false);
   }
 
-  const handleShowCard = () => {
-    setIsShowCard(!isShowCard);
-  };
   return (
     <Grid container>
-      {data &&
-        data.map((item, index) => (
-          <Grid md={3}>
-            <div className={styles.card} key={index}>
-              <h2>{item}</h2>
-              <Card />
-            </div>
-          </Grid>
-        ))}
+      {List.map((item, index) => (
+        <Grid md={3}>
+          <div className={styles.card} key={index}>
+            <h2>{item.name}</h2>
+            <Card index={index} taskData={item.list} />
+          </div>
+        </Grid>
+      ))}
       <Grid md={3}>
         {isShowBtn && (
           <button onClick={handleClick} className={styles.btn}>
