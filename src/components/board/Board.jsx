@@ -50,8 +50,6 @@ export default function Board() {
 
   return (
     <Grid container>
-
-
       {List.map((item, index) => (
         <Grid md={3}>
           <div className={styles.card} key={index}>

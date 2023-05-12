@@ -10,7 +10,7 @@ import EditSharpIcon from "@mui/icons-material/EditSharp";
 
 import { useNavigate } from "react-router-dom";
 
-export default function Card() {
+export default function Card(props) {
 //   const taskData = useRecoilValue(tasks);
   const navigate = useNavigate();
 
