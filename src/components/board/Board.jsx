@@ -19,6 +19,13 @@ export default function Board() {
   const [inputvalue, setinputvalue] = useState("");
   // const [isShowCard, setIsShowCard] = useState(false);
 
+  useEffect(() => {
+    const storedList = localStorage.getItem("List");
+    if (storedList) {
+      setList(JSON.parse(storedList));
+    }
+},[]);
+
   function handleChange(e) {
     setinputvalue(e.target.value);
   }
