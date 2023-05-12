@@ -12,8 +12,9 @@ export const data = atom({
   key: "data",
   default: storedLists || [],
 });
-// export const data = atom({
-//   key: "data",
-//   default: [],
-// });
+
+export const toggleState = atom({
+  key: "toggleState",
+  default: false,
+});
 
