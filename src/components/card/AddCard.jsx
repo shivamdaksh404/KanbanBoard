@@ -33,7 +33,7 @@ export default function AddCard(props) {
     });
     setList(newList);
     setTextarea("");
-    localStorage.setItem("Lists", JSON.stringify(newList));
+    localStorage.setItem("List", JSON.stringify(newList));
   };
 
   return (
