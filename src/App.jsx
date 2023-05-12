@@ -8,7 +8,7 @@ import Todo from "./components/todo/Todo";
 export default function App() {
   return (
     <Grid container >
-      <Grid md={3} sx={{border:'1px solid'}}>
+      {/* <Grid md={3} sx={{border:'1px solid'}}>
         <Todo/>
       </Grid>
       
@@ -18,7 +18,7 @@ export default function App() {
 
       <Grid md={3} sx={{border:'1px solid'}}>
         <p>third column</p>
-      </Grid>
+      </Grid> */}
 <Board />
     </Grid>
   );
