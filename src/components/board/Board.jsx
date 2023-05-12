@@ -34,14 +34,14 @@ export default function Board() {
     <Grid container>
       {data &&
         data.map((item, index) => (
-          <Grid md={3}>
+          <Grid item md={3} >
             <div className={styles.card} key={index}>
               <h2>{item}</h2>
               <Card />
             </div>
           </Grid>
         ))}
-      <Grid md={3}>
+      <Grid item md={3}>
         {isShowBtn && (
           <button onClick={handleClick} className={styles.btn}>
             + Add Another List

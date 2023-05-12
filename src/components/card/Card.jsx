@@ -1,25 +1,23 @@
 import React, { useState } from "react";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+
 import style from "./Card.module.css";
 import AddCard from "./AddCard";
 import { tasks } from "../../atom/Atom";
 import { useRecoilValue } from "recoil";
 import { IconButton } from "@mui/material";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
-import { StyleRounded } from "@mui/icons-material";
-import PopUp from "../popup/PopUp";
+
+import { useNavigate } from "react-router-dom";
 
 export default function Card() {
   const taskData = useRecoilValue(tasks);
-  const [toggle, setToggle] = useState(false);
+  const navigate = useNavigate();
   const [isEditVisible, setIsEditVisible] = useState(false);
 
   const handleShowEdit = (index) => {
     setIsEditVisible(!isEditVisible);
   };
-  function handleToggle() {
-    setToggle(!toggle);
-  }
+
   return (
     <div>
       <div className={style.addCard}>
@@ -30,8 +28,9 @@ export default function Card() {
                 key={index}
                 onMouseMove={() => handleShowEdit(index)}
                 className={style.taskLists}
+                onClick={() => navigate("/popup")}
               >
-                <p onClick={handleToggle}>{ele}</p>
+                <p>{ele}</p>
 
                 {isEditVisible && (
                   <IconButton>
@@ -39,7 +38,6 @@ export default function Card() {
                   </IconButton>
                 )}
               </li>
-              {toggle && <PopUp />}
             </>
           ))}
         </div>

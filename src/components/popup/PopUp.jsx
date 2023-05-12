@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 import popup from "./PopUp.module.css";
+// import { useRecoilState } from "recoil";
+// import { toggleState } from "../../atom/Atom";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 
+import { useNavigate } from "react-router-dom";
+
 export default function PopUp() {
-  // const [toggle, setToggle] = useState(false);
+  // const [toggle, setToggle] = useRecoilState(toggleState);
+  const navigate = useNavigate();
 
   return (
     <>
       <div className={popup.mainDiv}>
         <div className={popup.title}>
           <h2 className={popup.head}>📻 Cook Food</h2>
-          <span onClick={() => setToggle(true)}>❌</span>
+          <span onClick={() => navigate('/')}>❌</span>
         </div>
         <span className={popup.para}>in list To Do</span>
         <div className={popup.des}>

@@ -1,13 +1,16 @@
 import React from "react";
 import styles from "./App.module.css";
 import Board from "./components/board/Board";
-import { Grid } from "@mui/material";
-import Todo from "./components/todo/Todo";
+
+
+import { Routes, Route } from "react-router-dom";
+import PopUp from "./components/popup/PopUp";
 
 export default function App() {
   return (
-    <div>
-      <Board />
-    </div>
+    <Routes>
+      <Route path="/" element={<Board />} />
+      <Route path="/popup" element={<PopUp />} />
+    </Routes>
   );
 }
