@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import style from "./Card.module.css";
 import AddCard from "./AddCard";
-import { tasks } from "../../atom/Atom";
-import { useRecoilValue } from "recoil";
+// import { tasks } from "../../atom/Atom";
+// import { useRecoilValue } from "recoil";
 import { IconButton } from "@mui/material";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
-import { StyleRounded } from "@mui/icons-material";
-import PopUp from "../popup/PopUp";
+// import { StyleRounded } from "@mui/icons-material";
+// import PopUp from "../popup/PopUp";
 
-export default function Card() {
-  const taskData = useRecoilValue(tasks);
+export default function Card(props) {
+  // const taskData = useRecoilValue(tasks);
   const [toggle, setToggle] = useState(false);
   const [isEditVisible, setIsEditVisible] = useState(false);
 
@@ -24,7 +24,7 @@ export default function Card() {
     <div>
       <div className={style.addCard}>
         <div className={style.todoTasks}>
-          {taskData.map((ele, index) => (
+          {props.taskData.map((ele, index) => (
             <>
               <li
                 key={index}
@@ -39,11 +39,11 @@ export default function Card() {
                   </IconButton>
                 )}
               </li>
-              {toggle && <PopUp />}
+              {/* {toggle && <PopUp />} */}
             </>
           ))}
         </div>
-        <AddCard />
+        <AddCard index={props.index} />
       </div>
     </div>
   );
