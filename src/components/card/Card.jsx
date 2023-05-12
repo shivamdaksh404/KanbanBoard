@@ -16,9 +16,14 @@ export default function Card(props) {
 
   const [isEditVisible, setIsEditVisible] = useState(false);
 
-  const handleShowEdit = (index) => {
-    setIsEditVisible(!isEditVisible);
+  const handleShowEdit = () => {
+    setIsEditVisible(true);
   };
+
+  const handleHideEdit = ()=>{
+    setIsEditVisible(false);
+  }
+  console.log(isEditVisible);
 
   return (
     <div>
@@ -28,17 +33,20 @@ export default function Card(props) {
             <>
               <li
                 key={index}
-                onMouseMove={() => handleShowEdit(index)}
+                onMouseOver={handleShowEdit}
+                onMouseOut={handleHideEdit}
                 className={style.taskLists}
                 onClick={() => navigate("/popup")}
               >
                 <p>{ele}</p>
 
-                {isEditVisible && (
-                  <IconButton>
+                {isEditVisible === true ? 
+                  <IconButton
+                 aria-label="edit"
+                  >
                     <EditSharpIcon fontSize="small" />
                   </IconButton>
-                )}
+                 : ""}
               </li>
 
             </>
