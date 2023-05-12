@@ -37,9 +37,7 @@ export default function Board() {
           <Grid md={3}>
             <div className={styles.card} key={index}>
               <h2>{item}</h2>
-
               <Card />
-              {/* <button onClick={handleShowCard}>Add Task</button> */}
             </div>
           </Grid>
         ))}
