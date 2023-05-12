@@ -2,16 +2,18 @@ import React, { useState } from "react";
 
 import style from "./Card.module.css";
 import AddCard from "./AddCard";
-import { tasks } from "../../atom/Atom";
-import { useRecoilValue } from "recoil";
+// import { tasks } from "../../atom/Atom";
+// import { useRecoilValue } from "recoil";
 import { IconButton } from "@mui/material";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
+
 
 import { useNavigate } from "react-router-dom";
 
 export default function Card() {
-  const taskData = useRecoilValue(tasks);
+//   const taskData = useRecoilValue(tasks);
   const navigate = useNavigate();
+
   const [isEditVisible, setIsEditVisible] = useState(false);
 
   const handleShowEdit = (index) => {
@@ -22,7 +24,7 @@ export default function Card() {
     <div>
       <div className={style.addCard}>
         <div className={style.todoTasks}>
-          {taskData.map((ele, index) => (
+          {props.taskData.map((ele, index) => (
             <>
               <li
                 key={index}
@@ -38,10 +40,11 @@ export default function Card() {
                   </IconButton>
                 )}
               </li>
+
             </>
           ))}
         </div>
-        <AddCard />
+        <AddCard index={props.index} />
       </div>
     </div>
   );

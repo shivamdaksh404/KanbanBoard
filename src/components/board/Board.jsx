@@ -1,22 +1,43 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "@mui/material";
+
+import { Grid, IconButton,listClasses } from "@mui/material";
 import styles from "./Board.module.css";
+import AddSharpIcon from "@mui/icons-material/AddSharp";
+import CloseSharpIcon from "@mui/icons-material/CloseSharp";
+import Button from "@mui/material/Button";
+import MoreHorizSharpIcon from '@mui/icons-material/MoreHorizSharp';
+
 import Card from "../card/Card";
+import { useRecoilState } from "recoil";
+import { data } from "../../atom/Atom";
+
 export default function Board() {
-  const [data, setData] = useState([]);
+  const [List, setList] = useRecoilState(data);
+
   const [isShow, setisShow] = useState(false);
   const [isShowBtn, setisShowBtn] = useState(true);
   const [inputvalue, setinputvalue] = useState("");
-  const [isShowCard, setIsShowCard] = useState(false);
-  // let inputvalue;
+  // const [isShowCard, setIsShowCard] = useState(false);
+
+  useEffect(() => {
+    const storedList = localStorage.getItem("List");
+    if (storedList) {
+      setList(JSON.parse(storedList));
+    }
+},[]);
 
   function handleChange(e) {
     setinputvalue(e.target.value);
   }
 
   function handleTaskAdd() {
-    setData((prev) => [...prev, inputvalue]);
+
+    let newlist = { name: inputvalue, list: [] };
+
+    setList((prev) => [...prev, newlist]);
+    localStorage.setItem("List", JSON.stringify([...List, newlist]));
     setinputvalue("");
+    console.log(List);
   }
   function handleClick() {
     setisShow(true);
@@ -27,69 +48,55 @@ export default function Board() {
     setisShow(false);
   }
 
-  const handleShowCard = () => {
-    setIsShowCard(!isShowCard);
-  };
   return (
     <Grid container>
-      {data &&
-        data.map((item, index) => (
-          <Grid item md={3} >
-            <div className={styles.card} key={index}>
-              <h2>{item}</h2>
-              <Card />
-            </div>
-          </Grid>
-        ))}
-      <Grid item md={3}>
+
+
+      {List.map((item, index) => (
+        <Grid md={3}>
+          <div className={styles.card} key={index}>
+            <h2 className={styles.listHeading}>{item.name} <MoreHorizSharpIcon/> </h2>
+            
+            <Card index={index} taskData={item.list} />
+          </div>
+        </Grid>
+      ))}
+      <Grid md={3}>
+
         {isShowBtn && (
-          <button onClick={handleClick} className={styles.btn}>
-            + Add Another List
-          </button>
+          <Button
+            variant="outlined"
+            onClick={handleClick}
+            startIcon={<AddSharpIcon />}
+            className={styles.btn}
+            sx={{ 
+              backgroundColor:"rgba(9,30,66,0.08)",
+              border:'none',
+              borderRadius:"10px",
+              color:"#172b4d",
+              width:"22rem",
+              height:"2.5rem",
+              marginLeft:"10px"
+             }}
+          >
+            Add Another List
+          </Button>
         )}
         {isShow && (
           <div className={styles.taskAdd}>
-            <input
-              type="text"
-              onChange={handleChange}
-              value={inputvalue}
-              style={{
-                padding: "8px",
-                borderRadius: "3px",
-                border: "none",
-                boxShadow: "0 1px 0 rgba(9,30,66,.25)",
-                backgroundColor: "white",
-                marginBottom: "8px",
-                width: "70%",
-                boxSizing: "border-box",
-              }}
-            />
+            <input type="text" id="input" onChange={handleChange} value={inputvalue} />
             <div className={styles.taskAddBtn}>
-              <button
+              <Button
                 onClick={handleTaskAdd}
-                style={{
-                  backgroundColor: "#5aac44",
-                  color: "white",
-                  padding: "8px",
-                  borderRadius: "3px",
-                  border: "none",
-                  marginRight: "8px",
-                  cursor: "pointer",
-                }}
+                variant="contained"
+                size="small"
+                startIcon={<AddSharpIcon />}
               >
-                +Add Card
-              </button>
-              <button
-                onClick={handleBtnDisplay}
-                style={{
-                  backgroundColor: "transparent",
-                  color: "#42526e",
-                  border: "none",
-                  cursor: "pointer",
-                }}
-              >
-                x
-              </button>
+                Add Card
+              </Button>
+              <IconButton onClick={handleBtnDisplay}>
+                <CloseSharpIcon />
+              </IconButton>
             </div>
           </div>
         )}
