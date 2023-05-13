@@ -3,13 +3,11 @@ import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import Popover from "@mui/material/Popover";
 import { v4 as uuidv4 } from "uuid";
-// import { PopupState } from "material-ui-popup-state";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
-import { Grid, IconButton, listClasses } from "@mui/material";
+import { Grid, IconButton } from "@mui/material";
 import styles from "./Board.module.css";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";
-// import Button from "@mui/material/Button";
 import MoreHorizSharpIcon from "@mui/icons-material/MoreHorizSharp";
 
 import Card from "../card/Card";
@@ -17,10 +15,10 @@ import { useRecoilState } from "recoil";
 import { data } from "../../atom/Atom";
 
 export default function Board() {
-  const [List, setList] = useRecoilState(data);
-  const [isShow, setisShow] = useState(false);
-  const [isShowBtn, setisShowBtn] = useState(true);
-  const [inputvalue, setinputvalue] = useState("");
+  const [list, setList] = useRecoilState(data);
+  const [isShow, setIsShow] = useState(false);
+  const [isShowBtn, setIsShowBtn] = useState(true);
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     const storedList = localStorage.getItem("List");
@@ -30,35 +28,39 @@ export default function Board() {
   }, []);
 
   function handleChange(e) {
-    setinputvalue(e.target.value);
+    setInputValue(e.target.value);
   }
 
   function handleTaskAdd() {
-    let newlist = { name: inputvalue, id: uuidv4(), list: [] };
+    let newlist = { name: inputValue, id: uuidv4(), list: [] };
 
     setList((prev) => [...prev, newlist]);
-    localStorage.setItem("List", JSON.stringify([...List, newlist]));
-    setinputvalue("");
-    console.log(List);
+    localStorage.setItem("List", JSON.stringify([...list, newlist]));
+    setInputValue("");
+    console.log(list);
   }
+
   function handleClick() {
-    setisShow(true);
-    setisShowBtn(false);
+    setIsShow(true);
+    setIsShowBtn(false);
   }
+
   function handleBtnDisplay() {
-    setisShowBtn(true);
-    setisShow(false);
+    setIsShowBtn(true);
+    setIsShow(false);
   }
-  function handleListdelete(id) {
-    let FilteredList = List.filter((_, index) => id !== index);
-    localStorage.setItem("List", JSON.stringify(FilteredList));
-    setList(FilteredList);
+
+  function handleListDelete(id) {
+    let filteredList = list.filter((_, index) => id !== index);
+    localStorage.setItem("List", JSON.stringify(filteredList));
+    setList(filteredList);
   }
+
   return (
     <Grid container>
-      {List.map((item, index) => (
-        <Grid md={3}>
-          <div className={styles.card} key={index}>
+      {list.map((item, index) => (
+        <Grid item md={3} key={index}>
+          <div className={styles.card}>
             <h2 className={styles.listHeading}>
               {item.name}
               <PopupState variant="popover" popupId="demo-popup-popover">
@@ -79,7 +81,7 @@ export default function Board() {
                       }}
                     >
                       <Typography sx={{ p: 2 }}>
-                        <button onClick={() => handleListdelete(index)}>
+                        <button onClick={() => handleListDelete(index)}>
                           Delete
                         </button>
                       </Typography>
@@ -92,7 +94,7 @@ export default function Board() {
           </div>
         </Grid>
       ))}
-      <Grid md={3}>
+      <Grid item md={3}>
         {isShowBtn && (
           <Button
             variant="outlined"
@@ -118,7 +120,7 @@ export default function Board() {
               type="text"
               id="input"
               onChange={handleChange}
-              value={inputvalue}
+              value={inputValue}
             />
             <div className={styles.taskAddBtn}>
               <Button

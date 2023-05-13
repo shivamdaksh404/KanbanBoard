@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import InputBox from "./InputBox";
 import Comments from "./Comments";
 
-export default function PopUp() {
+export default function PopUp({ onClose }) {
   const navigate = useNavigate();
 
   // New state to track whether to show saved text or input box
@@ -24,8 +24,13 @@ export default function PopUp() {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      event.preventDefault(); 
-      
+      event.preventDefault();
+    }
+  };
+
+  const handleClose = () => {
+    if (onClose) {
+      onClose();
     }
   };
 
@@ -44,7 +49,7 @@ export default function PopUp() {
               Cook Food{" "}
             </span>
           </h2>
-          <span onClick={() => navigate("/")}>❌</span>
+          <span onClick={handleClose}>❌</span>
         </div>
         <span className={popup.para}>
           in list{" "}
