@@ -24,8 +24,8 @@ export default function PopUp() {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      event.preventDefault(); // Prevent default behavior (new line)
-      // Handle your logic here
+      event.preventDefault(); 
+      
     }
   };
 

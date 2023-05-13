@@ -4,9 +4,9 @@ import { Button } from "@mui/material";
 
 export default function InputBox({ onSaveText }) {
   const [savedText, setSavedText] = useState(""); // New state to store the saved text
-  const [isEditing, setIsEditing] = useState(true); // New state to track edit mode
   const [draftText, setDraftText] = useState(""); // New state to store the draft text
-
+  const [isEditing, setIsEditing] = useState(true); // New state to track edit mode
+  
   const handleSave = () => {
     if (draftText.trim() !== "") {
       setIsEditing(false); // Disable edit mode after saving

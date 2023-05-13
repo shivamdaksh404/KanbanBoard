@@ -6,8 +6,7 @@
     padding: 0 1.5rem;
     border-radius: .5rem;
     z-index: 10000;
-    /* color: whitesmoke;
-    background-color: black; */
+   
 }
 .title{
     display: flex;
@@ -38,8 +37,8 @@
 .paraTwo{
     margin-left: 2.7rem;
     width: 25rem;
-    height: 3.5rem;   
-    margin-bottom: .5rem;
+    height: 5rem;   
+    
 }
 .secondInputBox{
     margin-left: .8rem;
