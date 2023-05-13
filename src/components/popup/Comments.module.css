@@ -1,0 +1,16 @@
+.username {
+    border: 1px solid;
+    border-radius: 50%;
+    background-color: blue;
+    padding: .3rem;
+}
+
+.comments {
+    margin-left: 1rem;
+}
+
+.commentsTime {
+    margin-left: 2.9rem;
+    margin-top: 0;
+    font-size: small;
+}
