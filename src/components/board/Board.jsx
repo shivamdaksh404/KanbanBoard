@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import Popover from "@mui/material/Popover";
+import { v4 as uuidv4 } from "uuid";
 // import { PopupState } from "material-ui-popup-state";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 import { Grid, IconButton, listClasses } from "@mui/material";
@@ -17,11 +18,9 @@ import { data } from "../../atom/Atom";
 
 export default function Board() {
   const [List, setList] = useRecoilState(data);
-
   const [isShow, setisShow] = useState(false);
   const [isShowBtn, setisShowBtn] = useState(true);
   const [inputvalue, setinputvalue] = useState("");
-  // const [isShowCard, setIsShowCard] = useState(false);
 
   useEffect(() => {
     const storedList = localStorage.getItem("List");
@@ -35,7 +34,7 @@ export default function Board() {
   }
 
   function handleTaskAdd() {
-    let newlist = { name: inputvalue, list: [] };
+    let newlist = { name: inputvalue, id: uuidv4(), list: [] };
 
     setList((prev) => [...prev, newlist]);
     localStorage.setItem("List", JSON.stringify([...List, newlist]));
