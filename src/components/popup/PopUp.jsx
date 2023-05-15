@@ -11,10 +11,8 @@ import Comments from "./Comments";
 export default function PopUp({ onClose }) {
   const navigate = useNavigate();
 
-  // New state to track whether to show saved text or input box
   const [showText, setShowText] = useState(false);
 
-  // New state to store the saved text
   const [savedText, setSavedText] = useState("");
 
   const handleSaveText = (text) => {
@@ -66,12 +64,11 @@ export default function PopUp({ onClose }) {
           <MenuIcon sx={{ marginRight: "1rem" }} /> <h4>Description</h4>
         </div>
         {!showText ? (
-          // Render input box if showText is false
           <p className={popup.paraTwo} onClick={() => setShowText(true)}>
             Add a more detailed description...
           </p>
         ) : (
-          <InputBox onSaveText={handleSaveText} /> // Pass onSaveText prop to InputBox component
+          <InputBox onSaveText={handleSaveText} /> 
         )}
         <div className={popup.des}>
           <ReceiptLongIcon sx={{ marginRight: "1rem" }} /> <h4>Activity</h4>
