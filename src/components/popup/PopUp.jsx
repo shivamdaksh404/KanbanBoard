@@ -31,13 +31,39 @@ export default function PopUp() {
 
   const Lists = useRecoilValue(data);
   const list = Lists.find((item) => item.id === listId);
-  console.log(list)
+  console.log(list);
   const task = list.list[taskId];
   return (
     <>
+      {" "}
       <div className={popup.mainDiv}>
-        <div className={popup.title}>{task.name}</div>
-        <span className={popup.para}>{list.name}</span>
+        <div className={popup.title}>
+          <h2 className={popup.head}>
+            <span>📻</span>{" "}
+            <span
+              contentEditable
+              suppressContentEditableWarning
+              onKeyDown={handleKeyDown}
+            >
+              {" "}
+              {/* Cook Food{" "} */}
+              {task.name}
+            </span>
+          </h2>
+          <span onClick={() => navigate("/")}>❌</span>
+        </div>
+        <span className={popup.para}>
+          in list{" "}
+          <span
+            contentEditable
+            suppressContentEditableWarning
+            onKeyDown={handleKeyDown}
+          >
+            {" "}
+            {/* To Do{" "} */}
+            {list.name}
+          </span>
+        </span>
         <div className={popup.des}>
           <MenuIcon sx={{ marginRight: "1rem" }} /> <h4>Description</h4>
         </div>
