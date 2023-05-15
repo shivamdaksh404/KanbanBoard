@@ -35,12 +35,17 @@ export default function Board() {
   }
 
   function handleTaskAdd() {
-    let newlist = { name: inputvalue, list: [] };
+    if(inputvalue.length===0){
+      input.focus()
+    } else if(inputvalue.length>0){
 
+    
+    let newlist = { name: inputvalue, list: [] };
     setList((prev) => [...prev, newlist]);
     localStorage.setItem("List", JSON.stringify([...List, newlist]));
     setinputvalue("");
     console.log(List);
+    }
   }
   function handleClick() {
     setisShow(true);
@@ -56,7 +61,8 @@ export default function Board() {
     setList(FilteredList);
   }
   return (
-    <Grid container>
+    <Grid container sx={{overflowX:"auto",
+    overflowY:"hidden"}}>
       {List.map((item, index) => (
         <Grid md={3}>
           <div className={styles.card} key={index}>
@@ -65,9 +71,9 @@ export default function Board() {
               <PopupState variant="popover" popupId="demo-popup-popover">
                 {(popupState) => (
                   <div>
-                    <Button variant="contained" {...bindTrigger(popupState)}>
+                    <IconButton variant="contained" {...bindTrigger(popupState)}>
                       <MoreHorizSharpIcon />
-                    </Button>
+                    </IconButton>
                     <Popover
                       {...bindPopover(popupState)}
                       anchorOrigin={{
@@ -101,13 +107,18 @@ export default function Board() {
             startIcon={<AddSharpIcon />}
             className={styles.btn}
             sx={{
-              backgroundColor: "rgba(9,30,66,0.08)",
               border: "none",
+              backgroundColor: "#e7e9ea4a",
               borderRadius: "10px",
-              color: "#172b4d",
+              color: "white",
               width: "22rem",
               height: "2.5rem",
               marginLeft: "10px",
+              "&:hover" :{
+              backgroundColor: "#ffffff26",
+              border: "none",
+
+              }
             }}
           >
             Add Another List
