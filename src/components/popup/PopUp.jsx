@@ -9,7 +9,7 @@ import InputBox from "./InputBox";
 import Comments from "./Comments";
 
 import { data } from "../../atom/Atom";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil"; 
 
 export default function PopUp() {
   const navigate = useNavigate();
@@ -23,30 +23,17 @@ export default function PopUp() {
     setShowText(true);
   };
 
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-    }
-  };
-
-  const Lists = useRecoilValue(data);
+  const [Lists, setLists] = useRecoilState(data); 
   const list = Lists.find((item) => item.id === listId);
   console.log(list);
   const task = list.list[taskId];
   return (
     <>
-      {" "}
       <div className={popup.mainDiv}>
         <div className={popup.title}>
           <h2 className={popup.head}>
             <span>📻</span>{" "}
-            <span
-              contentEditable
-              suppressContentEditableWarning
-              onKeyDown={handleKeyDown}
-            >
-              {" "}
-              {/* Cook Food{" "} */}
+            <span>
               {task.name}
             </span>
           </h2>
@@ -54,13 +41,7 @@ export default function PopUp() {
         </div>
         <span className={popup.para}>
           in list{" "}
-          <span
-            contentEditable
-            suppressContentEditableWarning
-            onKeyDown={handleKeyDown}
-          >
-            {" "}
-            {/* To Do{" "} */}
+          <span>
             {list.name}
           </span>
         </span>
