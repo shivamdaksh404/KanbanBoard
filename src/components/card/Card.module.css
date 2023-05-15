@@ -17,6 +17,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    overflow-wrap: break-word;
 }
 
 .taskLists:hover{
