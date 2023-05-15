@@ -4,12 +4,12 @@ import AddIcon from "@mui/icons-material/Add";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useRecoilState } from "recoil";
-import { data, tasks } from "../../atom/Atom";
+import { data } from "../../atom/Atom";
 import style from "./AddCard.module.css";
 
 export default function AddCard(props) {
   const [List, setList] = useRecoilState(data);
-  let id = props.index;
+  const id = props.index;
   const [isTaskAdd, setIsTaskAdd] = useState(true);
   const [textarea, setTextarea] = useState("");
 
@@ -23,14 +23,14 @@ export default function AddCard(props) {
   };
 
   const handleAddTasks = (id) => {
-    let newList = List.map((item) => {
+    const newList = List.map((item) => {
       if (id === item.id) {
-        let newTask = {
+        const newTask = {
           name: textarea,
           description: " ",
           activity: [],
         };
-        let newObj = { ...item, list: [...item.list, newTask] };
+        const newObj = { ...item, list: [...item.list, newTask] };
         return newObj;
       } else {
         return item;

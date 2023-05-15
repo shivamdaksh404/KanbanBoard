@@ -9,7 +9,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Board />} />
-      <Route path="/popup" element={<PopUp />} />
+      <Route path="/popup/:listId/:taskId" element={<PopUp />} />
     </Routes>
   );
 }
