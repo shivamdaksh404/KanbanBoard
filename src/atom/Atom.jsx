@@ -1,7 +1,6 @@
 import { atom } from "recoil";
 
 export const tasks = atom({
-
   key: "tasks",
   default: [],
 });
@@ -17,3 +16,21 @@ export const data = atom({
 //   default: [],
 // });
 
+export const demo = atom({
+  key: "demo",
+  default: "",
+});
+export const indexrecoil = atom({
+  key: "indexrecoil",
+  default: null,
+});
+
+export const taskIndex = atom({
+  key: "taskIndex",
+  default: null,
+});
+
+export const dummy = atom({
+  key: "dummy",
+  default: "",
+});

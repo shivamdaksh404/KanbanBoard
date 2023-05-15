@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import style from "./Card.module.css";
 import AddCard from "./AddCard";
@@ -7,18 +7,33 @@ import AddCard from "./AddCard";
 import { IconButton } from "@mui/material";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
 
-
 import { useNavigate } from "react-router-dom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { data, demo, dummy, indexrecoil, taskIndex } from "../../atom/Atom";
+// import PopUp from "../popup/PopUp";
 
 export default function Card(props) {
-//   const taskData = useRecoilValue(tasks);
+  const List = useRecoilValue(data);
+  const [name, setname] = useRecoilState(demo);
+  const [tindex, settindex] = useRecoilState(taskIndex);
+  const [id, setid] = useRecoilState(indexrecoil);
   const navigate = useNavigate();
-
   const [isEditVisible, setIsEditVisible] = useState(false);
-
+  const [descript, setdescript] = useRecoilState(dummy);
   const handleShowEdit = (index) => {
     setIsEditVisible(!isEditVisible);
   };
+
+  useEffect(() => {
+    console.log(props.taskData);
+  }, [List]);
+
+  function taskClick(taskname, index) {
+    setname(taskname);
+    settindex(index);
+    setid(props.index);
+    navigate("/popup");
+  }
 
   return (
     <div>
@@ -30,9 +45,9 @@ export default function Card(props) {
                 key={index}
                 onMouseMove={() => handleShowEdit(index)}
                 className={style.taskLists}
-                onClick={() => navigate("/popup")}
+                onClick={() => taskClick(ele, index)}
               >
-                <p>{ele}</p>
+                <p>{ele.name}</p>
 
                 {isEditVisible && (
                   <IconButton>
@@ -40,7 +55,6 @@ export default function Card(props) {
                   </IconButton>
                 )}
               </li>
-
             </>
           ))}
         </div>

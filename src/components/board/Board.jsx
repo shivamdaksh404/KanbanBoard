@@ -88,7 +88,7 @@ export default function Board() {
                 )}
               </PopupState>
             </h2>
-            <Card index={index} taskData={item.list} />
+            <Card index={item.id} taskData={item.list} />
           </div>
         </Grid>
       ))}
