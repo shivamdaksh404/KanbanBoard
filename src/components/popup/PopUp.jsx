@@ -8,6 +8,9 @@ import { useNavigate } from "react-router-dom";
 import InputBox from "./InputBox";
 import Comments from "./Comments";
 
+import {data} from '../../atom/Atom'
+import { useRecoilValue } from "recoil";
+
 export default function PopUp() {
   const navigate = useNavigate();
 
@@ -29,10 +32,13 @@ export default function PopUp() {
     }
   };
 
-  const storedLists = JSON.parse(localStorage.getItem("List"));
-  console.log(storedLists)
+  // const storedLists = JSON.parse(localStorage.getItem("List"));
+  // console.log(storedLists)
 
-  
+  const Lists = useRecoilValue(data)
+  console.log(Lists[0].list[0].name)
+  // console.log(Lists)
+
   return (
     <>
       <div className={popup.mainDiv}>
@@ -45,7 +51,8 @@ export default function PopUp() {
               onKeyDown={handleKeyDown}
             >
               {" "}
-              Cook Food{" "}
+              {/* Cook Food{" "} */}
+              {Lists[0].list[0].name}
               
             </span>
           </h2>
@@ -59,7 +66,8 @@ export default function PopUp() {
             onKeyDown={handleKeyDown}
           >
             {" "}
-            To Do{" "}
+            {/* To Do{" "} */}
+            {Lists[0].name}
           </span>
         </span>
         <div className={popup.des}>
