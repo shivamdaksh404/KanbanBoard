@@ -6,7 +6,7 @@ import AddCard from "./AddCard";
 // import { useRecoilValue } from "recoil";
 import { IconButton } from "@mui/material";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
-
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import { useNavigate } from "react-router-dom";
 
@@ -41,11 +41,20 @@ export default function Card(props) {
                 <p>{ele}</p>
 
                 {isEditVisible === true ? 
+                <>
+
                   <IconButton
                  aria-label="edit"
                   >
                     <EditSharpIcon fontSize="small" />
                   </IconButton>
+                  <IconButton color="error"
+                 aria-label="edit"
+                  >
+                    <DeleteIcon fontSize="small" />
+                  </IconButton>
+
+                </>
                  : ""}
               </li>
 
