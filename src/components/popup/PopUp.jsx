@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import InputBox from "./InputBox";
 import Comments from "./Comments";
 
-import {data} from '../../atom/Atom'
+import { data } from "../../atom/Atom";
 import { useRecoilValue } from "recoil";
 
 export default function PopUp() {
@@ -27,16 +27,15 @@ export default function PopUp() {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      event.preventDefault(); 
-      
+      event.preventDefault();
     }
   };
 
   // const storedLists = JSON.parse(localStorage.getItem("List"));
   // console.log(storedLists)
 
-  const Lists = useRecoilValue(data)
-  console.log(Lists[0].list[0].name)
+  const Lists = useRecoilValue(data);
+  console.log(Lists[0].list[0].name);
   // console.log(Lists)
 
   return (
@@ -53,7 +52,6 @@ export default function PopUp() {
               {" "}
               {/* Cook Food{" "} */}
               {Lists[0].list[0].name}
-              
             </span>
           </h2>
           <span onClick={() => navigate("/")}>❌</span>
@@ -74,12 +72,11 @@ export default function PopUp() {
           <MenuIcon sx={{ marginRight: "1rem" }} /> <h4>Description</h4>
         </div>
         {!showText ? (
-          // Render input box if showText is false
           <p className={popup.paraTwo} onClick={() => setShowText(true)}>
             Add a more detailed description...
           </p>
         ) : (
-          <InputBox onSaveText={handleSaveText} /> // Pass onSaveText prop to InputBox component
+          <InputBox onSaveText={handleSaveText} />
         )}
         <div className={popup.des}>
           <ReceiptLongIcon sx={{ marginRight: "1rem" }} /> <h4>Activity</h4>
