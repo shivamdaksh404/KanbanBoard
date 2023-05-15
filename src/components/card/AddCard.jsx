@@ -26,10 +26,14 @@ export default function AddCard(props) {
 if(textarea.length===0){
   textarea.focus()
 }else if(textarea.length>0){
-
-    let newList = List.map((item, index) => {
-      if (id === index) {
-        let newObj = { ...item, list: [...item.list, textarea] };
+    let newList = List.map((item) => {
+      if (id === item.id) {
+        let newTask = {
+          name: textarea,
+          description: " ",
+          activity: [],
+        };
+        let newObj = { ...item, list: [...item.list, newTask] };
         return newObj;
       } else {
         return item;
@@ -46,7 +50,6 @@ if(textarea.length===0){
         <IconButton
           className={style.IconDiv}
           sx={{
-            // border: "1px solid red",
             borderRadius: "10px",
             height: "2rem",
             display: "flex",

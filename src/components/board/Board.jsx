@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import Popover from "@mui/material/Popover";
-// import { PopupState } from "material-ui-popup-state";
+import { v4 as uuidv4 } from "uuid";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 import { Grid, IconButton, listClasses } from "@mui/material";
 import styles from "./Board.module.css";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";
-// import Button from "@mui/material/Button";
 import MoreHorizSharpIcon from "@mui/icons-material/MoreHorizSharp";
 
 import Card from "../card/Card";
@@ -17,11 +16,9 @@ import { data } from "../../atom/Atom";
 
 export default function Board() {
   const [List, setList] = useRecoilState(data);
-
   const [isShow, setisShow] = useState(false);
   const [isShowBtn, setisShowBtn] = useState(true);
   const [inputvalue, setinputvalue] = useState("");
-  // const [isShowCard, setIsShowCard] = useState(false);
 
   useEffect(() => {
     const storedList = localStorage.getItem("List");
@@ -35,12 +32,12 @@ export default function Board() {
   }
 
   function handleTaskAdd() {
+
     if(inputvalue.length===0){
       input.focus()
     } else if(inputvalue.length>0){
 
-    
-    let newlist = { name: inputvalue, list: [] };
+    let newlist = { name: inputvalue, id: uuidv4(), list: [] };
     setList((prev) => [...prev, newlist]);
     localStorage.setItem("List", JSON.stringify([...List, newlist]));
     setinputvalue("");
@@ -55,6 +52,7 @@ export default function Board() {
     setisShowBtn(true);
     setisShow(false);
   }
+
   function handleListdelete(id) {
     let FilteredList = List.filter((_, index) => id !== index);
     localStorage.setItem("List", JSON.stringify(FilteredList));
@@ -97,7 +95,7 @@ marginLeft: "1rem"
                 )}
               </PopupState>
             </h2>
-            <Card index={index} taskData={item.list} />
+            <Card index={item.id} taskData={item.list} />
           </div>
         </Grid>
       ))}
