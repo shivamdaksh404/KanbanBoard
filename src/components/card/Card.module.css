@@ -12,12 +12,15 @@
     background: #ffffff;
     border: 2px solid rgb(221, 221, 221);
     padding-left: 1rem;
-    height: 2.5rem;
+    /* min-height: 0rem; */
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    overflow-wrap: break-word;
+    justify-content: space-around;
+    /* max-width: 22rem; */
+    /* text-overflow: ; */
+    overflow-wrap: anywhere;
+
 }
 
 .taskLists:hover{

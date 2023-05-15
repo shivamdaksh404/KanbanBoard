@@ -6,6 +6,8 @@ import AddCard from "./AddCard";
 // import { useRecoilValue } from "recoil";
 import { IconButton } from "@mui/material";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -19,6 +21,14 @@ export default function Card(props) {
   const [id, setid] = useRecoilState(ListId);
   const navigate = useNavigate();
   const [isEditVisible, setIsEditVisible] = useState(false);
+  const handleShowEdit = () => {
+    setIsEditVisible(true);
+  };
+
+  const handleHideEdit = ()=>{
+    setIsEditVisible(false);
+  }
+  console.log(isEditVisible);
   // const [descript, setdescript] = useRecoilState(dummy);
   const handleShowEdit = (index) => {
     setIsEditVisible(!isEditVisible);
@@ -46,17 +56,29 @@ export default function Card(props) {
             <>
               <li
                 key={index}
-                onMouseMove={() => handleShowEdit(index)}
+                onMouseOver={handleShowEdit}
+                onMouseOut={handleHideEdit}
                 className={style.taskLists}
                 onClick={() => taskClick(ele, index)}
               >
                 <p>{ele.name}</p>
 
-                {isEditVisible && (
-                  <IconButton>
+                {isEditVisible === true ? 
+                <>
+
+                  <IconButton
+                 aria-label="edit"
+                  >
                     <EditSharpIcon fontSize="small" />
                   </IconButton>
-                )}
+                  <IconButton color="error"
+                 aria-label="edit"
+                  >
+                    <DeleteIcon fontSize="small" />
+                  </IconButton>
+
+                </>
+                 : ""}
               </li>
             </>
           ))}
