@@ -17,6 +17,7 @@ export default function PopUp() {
   const navigate = useNavigate();
   const indexRecoil = useRecoilValue(indexrecoil);
   const [description, setDescription] = useRecoilState(dummy);
+  const [newTaskname, setnewTaskname] = useState("");
 
   function handleChange(e) {
     setDescription(e.target.value);
@@ -46,6 +47,28 @@ export default function PopUp() {
     localStorage.setItem("List", JSON.stringify(newList));
     setDescription("");
   }
+  function handleName(e) {
+    setnewTaskname(e.target.value);
+  }
+  function handleTaskname(id) {
+    let newList = List.map((item) => {
+      if (item.id === indexRecoil) {
+        let newTasklist = item.list.map((obj, index) => {
+          if (index === id) {
+            return { ...obj, name: newTaskname };
+          } else {
+            return obj;
+          }
+        });
+        return { ...item, list: newTasklist };
+      } else {
+        return item;
+      }
+    });
+    setList(newList);
+    localStorage.setItem("List", JSON.stringify(newList));
+    setDescription("");
+  }
 
   return (
     <>
@@ -53,6 +76,10 @@ export default function PopUp() {
         <div className={popup.title}>
           <h2 className={popup.head}>{taskname.name}</h2>
           <span onClick={() => navigate("/")}>❌</span>
+        </div>
+        <div>
+          <input onChange={handleName} />
+          <button onClick={() => handleTaskname(tindex)}>save</button>
         </div>
         <span className={popup.para}>in list To Do</span>
         <div className={popup.des}>
