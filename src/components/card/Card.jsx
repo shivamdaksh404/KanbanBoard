@@ -9,24 +9,27 @@ import EditSharpIcon from "@mui/icons-material/EditSharp";
 
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { data, demo, dummy, indexrecoil, taskIndex } from "../../atom/Atom";
+import { data, demo, dummy, ListId, taskIndex } from "../../atom/Atom";
 // import PopUp from "../popup/PopUp";
 
 export default function Card(props) {
-  const List = useRecoilValue(data);
+  const [List, setList] = useRecoilState(data);
   const [name, setname] = useRecoilState(demo);
   const [tindex, settindex] = useRecoilState(taskIndex);
-  const [id, setid] = useRecoilState(indexrecoil);
+  const [id, setid] = useRecoilState(ListId);
   const navigate = useNavigate();
   const [isEditVisible, setIsEditVisible] = useState(false);
-  const [descript, setdescript] = useRecoilState(dummy);
+  // const [descript, setdescript] = useRecoilState(dummy);
   const handleShowEdit = (index) => {
     setIsEditVisible(!isEditVisible);
   };
 
   useEffect(() => {
-    console.log(props.taskData);
-  }, [List]);
+    const storedList = localStorage.getItem("List");
+    if (storedList) {
+      setList(JSON.parse(storedList));
+    }
+  }, []);
 
   function taskClick(taskname, index) {
     setname(taskname);

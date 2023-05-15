@@ -3,13 +3,11 @@ import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import Popover from "@mui/material/Popover";
 import { v4 as uuidv4 } from "uuid";
-// import { PopupState } from "material-ui-popup-state";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 import { Grid, IconButton, listClasses } from "@mui/material";
 import styles from "./Board.module.css";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";
-// import Button from "@mui/material/Button";
 import MoreHorizSharpIcon from "@mui/icons-material/MoreHorizSharp";
 
 import Card from "../card/Card";
@@ -49,6 +47,7 @@ export default function Board() {
     setisShowBtn(true);
     setisShow(false);
   }
+
   function handleListdelete(id) {
     let FilteredList = List.filter((_, index) => id !== index);
     localStorage.setItem("List", JSON.stringify(FilteredList));
