@@ -28,8 +28,11 @@ if(textarea.length===0){
 }else if(textarea.length>0){
     let newList = List.map((item) => {
       if (id === item.id) {
+        let id = Math.random()
+        id = Math.floor(id*80)
         let newTask = {
           name: textarea,
+          id:id,
           description: " ",
           activity: [],
         };

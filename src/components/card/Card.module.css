@@ -4,6 +4,10 @@
 
 
 }
+/* .addCard{
+
+    min-width: 50rem;
+} */
 .taskLists{
     list-style: none;
     font-size: large;
@@ -15,12 +19,19 @@
     /* min-height: 0rem; */
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
+    align-items: start;
+    justify-content: space-between;
     /* max-width: 22rem; */
     /* text-overflow: ; */
     overflow-wrap: anywhere;
 
+}
+.icon_btn{
+    display: flex;
+    z-index: 5;
+    margin: 5px;
+    position: relative;
+    /* left: 18rem; */
 }
 
 .taskLists:hover{

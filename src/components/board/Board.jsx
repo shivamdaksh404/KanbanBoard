@@ -3,12 +3,13 @@ import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import Popover from "@mui/material/Popover";
 import { v4 as uuidv4 } from "uuid";
-import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
+import PopupState, { bindTrigger, bindPopover, bindDialog } from "material-ui-popup-state";
 import { Grid, IconButton, listClasses } from "@mui/material";
 import styles from "./Board.module.css";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";
 import MoreHorizSharpIcon from "@mui/icons-material/MoreHorizSharp";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import Card from "../card/Card";
 import { useRecoilState } from "recoil";
@@ -62,13 +63,16 @@ export default function Board() {
     <Grid container sx={{
 marginTop:"1rem",
 marginLeft: "1rem"
+
     }}>
       {List.map((item, index) => (
         <Grid md={3}>
           <div className={styles.card} key={index}>
             <h2 className={styles.listHeading}>
               {item.name}
-              <PopupState variant="popover" popupId="demo-popup-popover">
+              <PopupState 
+            
+              variant="popover" popupId="demo-popup-popover">
                 {(popupState) => (
                   <div>
                     <IconButton variant="contained" {...bindTrigger(popupState)}>
@@ -83,13 +87,14 @@ marginLeft: "1rem"
                       transformOrigin={{
                         vertical: "top",
                         horizontal: "center",
+                        
                       }}
                     >
-                      <Typography sx={{ p: 2 }}>
-                        <button onClick={() => handleListdelete(index)}>
-                          Delete
-                        </button>
-                      </Typography>
+                      {/* <Typography sx={{ p: 1 }}> */}
+                        <IconButton onClick={() => handleListdelete(index)}>
+                        <DeleteIcon fontSize="small" />
+                        </IconButton>
+                      {/* </Typography> */}
                     </Popover>
                   </div>
                 )}

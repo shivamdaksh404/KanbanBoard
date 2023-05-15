@@ -6,8 +6,7 @@ import AddCard from "./AddCard";
 // import { useRecoilValue } from "recoil";
 import { IconButton } from "@mui/material";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
-import DeleteIcon from '@mui/icons-material/Delete';
-
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -20,19 +19,7 @@ export default function Card(props) {
   const [tindex, settindex] = useRecoilState(taskIndex);
   const [id, setid] = useRecoilState(ListId);
   const navigate = useNavigate();
-  const [isEditVisible, setIsEditVisible] = useState(false);
-  const handleShowEdit = () => {
-    setIsEditVisible(true);
-  };
-
-  const handleHideEdit = ()=>{
-    setIsEditVisible(false);
-  }
-  console.log(isEditVisible);
-  // const [descript, setdescript] = useRecoilState(dummy);
-  const handleShowEdit = (index) => {
-    setIsEditVisible(!isEditVisible);
-  };
+  const [isEditVisible, setIsEditVisible] = useState("");
 
   useEffect(() => {
     const storedList = localStorage.getItem("List");
@@ -47,6 +34,24 @@ export default function Card(props) {
     setid(props.index);
     navigate("/popup");
   }
+  const handleShowEdit = (Index) => {
+    setIsEditVisible(Index);
+  };
+  const handleHideEdit =(index)=>{
+    setIsEditVisible(-1)
+  }
+  
+  const handleDeleteCard = (Index) => {
+    // const filteredList = (props.taskData).filter((_,index) => index !== ID);
+  //  setList(filteredList)
+  // console.log(ID);
+  let data = [...List]
+  data = data.filter((_,index)=> index!==Index)
+  // setList(data)
+  console.log(List)
+  console.log(data)
+  console.log("form delelt",props.taskData[Index])
+  };
 
   return (
     <div>
@@ -56,29 +61,44 @@ export default function Card(props) {
             <>
               <li
                 key={index}
-                onMouseOver={handleShowEdit}
-                onMouseOut={handleHideEdit}
+                onMouseOver={() => handleShowEdit(index)}
+                onMouseOut={() => handleHideEdit(index)}
                 className={style.taskLists}
                 onClick={() => taskClick(ele, index)}
               >
                 <p>{ele.name}</p>
 
-                {isEditVisible === true ? 
-                <>
+                {isEditVisible === index ? (
+                  <div className={style.icon_btn}>
+                    <IconButton
+                      sx={{
+                        "&:hover": {
+                          borderRadius: "5px",
+                          backgroundColor: "whitesmoke",
+                        },
+                      }}
+                      aria-label="edit"
+                    >
+                      <EditSharpIcon fontSize="small" />
+                    </IconButton>
 
-                  <IconButton
-                 aria-label="edit"
-                  >
-                    <EditSharpIcon fontSize="small" />
-                  </IconButton>
-                  <IconButton color="error"
-                 aria-label="edit"
-                  >
-                    <DeleteIcon fontSize="small" />
-                  </IconButton>
-
-                </>
-                 : ""}
+                    <IconButton
+                      onClick={() => handleDeleteCard(index)}
+                      sx={{
+                        "&:hover": {
+                          borderRadius: "5px",
+                          backgroundColor: "whitesmoke",
+                        },
+                      }}
+                      color="error"
+                      aria-label="edit"
+                    >
+                      <DeleteIcon fontSize="small" />
+                    </IconButton>
+                  </div>
+                ) : (
+                  ""
+                )}
               </li>
             </>
           ))}
