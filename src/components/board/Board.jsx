@@ -61,8 +61,10 @@ export default function Board() {
     setList(FilteredList);
   }
   return (
-    <Grid container sx={{overflowX:"auto",
-    overflowY:"hidden"}}>
+    <Grid container sx={{
+marginTop:"1rem",
+marginLeft: "1rem"
+    }}>
       {List.map((item, index) => (
         <Grid md={3}>
           <div className={styles.card} key={index}>
