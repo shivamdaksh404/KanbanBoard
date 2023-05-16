@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
-
 import style from "./Card.module.css";
 import AddCard from "./AddCard";
-// import { tasks } from "../../atom/Atom";
-// import { useRecoilValue } from "recoil";
 import { IconButton } from "@mui/material";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import { useNavigate } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { data, demo, dummy, ListId, taskIndex } from "../../atom/Atom";
-// import PopUp from "../popup/PopUp";
+import { useRecoilState } from "recoil";
+import { data, demo, ListId, taskIndex } from "../../atom/Atom";
 
 export default function Card(props) {
   const [List, setList] = useRecoilState(data);
@@ -20,9 +16,6 @@ export default function Card(props) {
   const [id, setid] = useRecoilState(ListId);
   const navigate = useNavigate();
   const [isEditVisible, setIsEditVisible] = useState("");
-
-  useEffect(() => {
-    const storedList = localStorage.getItem("List");
     if (storedList) {
       setList(JSON.parse(storedList));
     }
@@ -52,6 +45,10 @@ export default function Card(props) {
   console.log(data)
   console.log("form delelt",props.taskData[Index])
   };
+
+  function handleShowEdit(index) {
+    setHoveredIndex(index);
+  }
 
   return (
     <div>
@@ -101,6 +98,7 @@ export default function Card(props) {
                 )}
               </li>
             </>
+
           ))}
         </div>
         <AddCard index={props.index} />

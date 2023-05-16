@@ -36,3 +36,12 @@ export const dummy = atom({
   key: "dummy",
   default: "",
 });
+export const descriptionState = atom({
+  key: "descriptionState",
+  default: "",
+});
+
+export const newTasknameState = atom({
+  key: "newTasknameState",
+  default: "",
+});

@@ -4,24 +4,28 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { data, demo, dummy, ListId, taskIndex } from "../../atom/Atom";
+import {
+  data,
+  demo,
+  descriptionState,
+  // dummy,
+  ListId,
+  newTasknameState,
+  taskIndex,
+} from "../../atom/Atom";
 
 export default function PopUp() {
   const [List, setList] = useRecoilState(data);
-  const taskname = useRecoilValue(demo);
-  const tindex = useRecoilValue(taskIndex);
+  const [taskname, settaskname] = useRecoilState(demo);
+  const [tindex, settindex] = useRecoilState(taskIndex);
+  const [listid, setlistid] = useRecoilState(ListId);
   const navigate = useNavigate();
-  const listid = useRecoilValue(ListId);
-  const [description, setDescription] = useRecoilState(dummy);
-  const [newTaskname, setnewTaskname] = useState("");
+  const [description, setDescription] = useRecoilState(descriptionState);
+  const [newTaskname, setnewTaskname] = useRecoilState(newTasknameState);
 
   function handleChange(e) {
     setDescription(e.target.value);
   }
-
-  // useEffect(() => {
-  //   console.log(taskname);
-  // }, [description]);
 
   function addDescription(id) {
     let newList = List.map((item) => {
@@ -66,6 +70,14 @@ export default function PopUp() {
     setDescription("");
   }
 
+  useEffect(() => {
+    const ListObject = List.find((item) => item.id === listid);
+
+    if (ListObject) {
+      const TaskObject = ListObject.list[tindex];
+      settaskname(TaskObject);
+    }
+  }, [List]);
   return (
     <>
       <div className={popup.mainDiv}>
