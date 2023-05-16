@@ -23,10 +23,16 @@ export default function AddCard(props) {
   };
 
   const handleAddTasks = (id) => {
+if(textarea.length===0){
+  textarea.focus()
+}else if(textarea.length>0){
     let newList = List.map((item) => {
       if (id === item.id) {
+        let id = Math.random()
+        id = Math.floor(id*80)
         let newTask = {
           name: textarea,
+          id:id,
           description: " ",
           activity: [],
         };
@@ -39,7 +45,7 @@ export default function AddCard(props) {
     setList(newList);
     setTextarea("");
     localStorage.setItem("List", JSON.stringify(newList));
-  };
+  }};
 
   return (
     <div className={style.mainDiv}>
