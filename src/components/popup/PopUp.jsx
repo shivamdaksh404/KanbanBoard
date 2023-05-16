@@ -17,7 +17,6 @@ import {
 
 export default function PopUp() {
   const [List, setList] = useRecoilState(data);
-  console.log(List);
   const [taskname, setTaskname] = useRecoilState(demo);
   const [tindex, setTindex] = useRecoilState(taskIndex);
   const [listid, setListid] = useRecoilState(ListId);
@@ -26,6 +25,8 @@ export default function PopUp() {
   const [newTaskname, setNewTaskname] = useRecoilState(newTasknameState);
   const [isEditingName, setIsEditingName] = useState(false);
   const [isEditingDescription, setIsEditingDescription] = useState(false);
+  const [listName, setListName] = useState("");
+  const [isEditingListName, setIsEditingListName] = useState(false);
 
   function handleChange(e) {
     setDescription(e.target.value);
@@ -79,10 +80,10 @@ export default function PopUp() {
 
   useEffect(() => {
     const listObject = List.find((item) => item.id === listid);
-
     if (listObject) {
       const taskObject = listObject.list[tindex];
       setTaskname(taskObject);
+      setListName(listObject.name);
     }
   }, [List, listid, setTaskname, tindex]);
 
@@ -104,8 +105,24 @@ export default function PopUp() {
     setDescription("");
   };
 
-  const listObject = List.find((item) => item.id === listid);
-  const listName = listObject ? listObject.name : "";
+  const handleListNameClick = () => {
+    setIsEditingListName(true);
+  };
+
+  const handleUpdateListName = () => {
+    if (listName.trim() !== "") {
+      let newList = List.map((item) => {
+        if (item.id === listid) {
+          return { ...item, name: listName };
+        } else {
+          return item;
+        }
+      });
+      setList(newList);
+      localStorage.setItem("List", JSON.stringify(newList));
+    }
+    setIsEditingListName(false);
+  };
 
   return (
     <>
@@ -135,8 +152,24 @@ export default function PopUp() {
           )}
           <span onClick={() => navigate("/")}>❌</span>
         </div>
-        <div> </div>
-        <span className={popup.para}>in list {listName}</span>
+        <div>
+          {isEditingListName ? (
+            <>
+              <input
+                value={listName}
+                onChange={(e) => setListName(e.target.value)}
+              />
+              <Button onClick={handleUpdateListName}>Update List Name</Button>
+            </>
+          ) : (
+            <>
+              <span className={popup.para}>
+                in list <span>{listName}</span>
+              </span>
+              <Button onClick={handleListNameClick}>Update List Name</Button>
+            </>
+          )}
+        </div>
         <div className={popup.des}>
           <MenuIcon sx={{ marginRight: "1rem" }} /> <h4>Description</h4>
         </div>
