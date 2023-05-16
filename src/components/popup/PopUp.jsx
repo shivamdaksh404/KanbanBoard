@@ -17,6 +17,7 @@ import {
 
 export default function PopUp() {
   const [List, setList] = useRecoilState(data);
+  console.log(List);
   const [taskname, setTaskname] = useRecoilState(demo);
   const [tindex, setTindex] = useRecoilState(taskIndex);
   const [listid, setListid] = useRecoilState(ListId);
@@ -77,11 +78,11 @@ export default function PopUp() {
   }
 
   useEffect(() => {
-    const ListObject = List.find((item) => item.id === listid);
+    const listObject = List.find((item) => item.id === listid);
 
-    if (ListObject) {
-      const TaskObject = ListObject.list[tindex];
-      setTaskname(TaskObject);
+    if (listObject) {
+      const taskObject = listObject.list[tindex];
+      setTaskname(taskObject);
     }
   }, [List, listid, setTaskname, tindex]);
 
@@ -103,6 +104,9 @@ export default function PopUp() {
     setDescription("");
   };
 
+  const listObject = List.find((item) => item.id === listid);
+  const listName = listObject ? listObject.name : "";
+
   return (
     <>
       <div className={popup.mainDiv}>
@@ -115,7 +119,6 @@ export default function PopUp() {
                   value={newTaskname}
                   onChange={handleName}
                   className={popup.tasknameInput}
-                  
                 />
                 <Button onClick={() => handleTaskname(tindex)}>Save</Button>
                 <Button onClick={handleCancelName}>Cancel</Button>
@@ -133,7 +136,7 @@ export default function PopUp() {
           <span onClick={() => navigate("/")}>❌</span>
         </div>
         <div> </div>
-        <span className={popup.para}>in list To Do</span>
+        <span className={popup.para}>in list {listName}</span>
         <div className={popup.des}>
           <MenuIcon sx={{ marginRight: "1rem" }} /> <h4>Description</h4>
         </div>
@@ -145,7 +148,6 @@ export default function PopUp() {
                 placeholder="Add a more detailed description..."
                 value={description}
                 onChange={handleChange}
-                
               />
               <Button onClick={() => addDescription(tindex)}>Save</Button>
               <Button onClick={handleCancelDescription}>Cancel</Button>
