@@ -55,6 +55,7 @@ export default function PopUp() {
 
   function handleName(e) {
     setNewTaskname(e.target.value);
+    setTaskname((prevTaskname) => ({ ...prevTaskname, name: e.target.value }));
   }
 
   function handleTaskname(id) {
@@ -133,10 +134,11 @@ export default function PopUp() {
               <h2 className={popup.head}>
                 <span className={popup.radio}>📻</span>
                 <input
-                  value={newTaskname}
+                  value={taskname.name}
                   onChange={handleName}
                   className={popup.tasknameInput}
                 />
+
                 <Button onClick={() => handleTaskname(tindex)}>Save</Button>
                 <Button onClick={handleCancelName}>Cancel</Button>
               </h2>
