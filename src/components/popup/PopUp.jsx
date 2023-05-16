@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import popup from "./PopUp.module.css";
+import Comments from "./Comments";
+import { Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import { useNavigate } from "react-router-dom";
@@ -67,7 +69,7 @@ export default function PopUp() {
     });
     setList(newList);
     localStorage.setItem("List", JSON.stringify(newList));
-    setDescription("");
+    setnewTaskname("");
   }
 
   useEffect(() => {
@@ -82,25 +84,29 @@ export default function PopUp() {
     <>
       <div className={popup.mainDiv}>
         <div className={popup.title}>
-          <h2 className={popup.head}>{taskname.name}</h2>
+          <h2 className={popup.head}>
+            <span>📻</span> <span>{taskname.name} </span> <input onChange={handleName} />
+          <Button onClick={() => handleTaskname(tindex)}>save</Button>
+          </h2>
           <span onClick={() => navigate("/")}>❌</span>
         </div>
         <div>
-          <input onChange={handleName} />
-          <button onClick={() => handleTaskname(tindex)}>save</button>
+          
         </div>
         <span className={popup.para}>in list To Do</span>
         <div className={popup.des}>
           <MenuIcon sx={{ marginRight: "1rem" }} /> <h4>Description</h4>
         </div>
-        <p>{taskname.description}</p>
-        <input
-          className={popup.firstInputBox}
-          placeholder="Add a more detailed description..."
-          value={description}
-          onChange={handleChange}
-        />
-        <button onClick={() => addDescription(tindex)}>save</button>
+        <div className={popup.inputDiv}>
+          <p>{taskname.description}</p>
+          <input
+            className={popup.firstInputBox}
+            placeholder="Add a more detailed description..."
+            value={description}
+            onChange={handleChange}
+          />
+          <Button onClick={() => addDescription(tindex)}>save</Button>
+        </div>
         <div className={popup.des}>
           <ReceiptLongIcon sx={{ marginRight: "1rem" }} /> <h4>Activity</h4>
         </div>
@@ -110,9 +116,7 @@ export default function PopUp() {
           placeholder="Write a comment..."
         />
         <br /> <br />
-        <span className={popup.username}>PR</span>
-        <span className={popup.comments}>PR added this card to To Do</span>
-        <p className={popup.commentsTime}>a minute ago</p>
+        <Comments />
       </div>
     </>
   );

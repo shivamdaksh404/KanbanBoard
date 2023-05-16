@@ -1,12 +1,24 @@
-.mainDiv{
+*{
+    font-family: Arial, sans-serif;
+}
+.mainDiv {
     margin: 0 30%;
+    margin-top: 2rem;
     border: 1px solid;
     width: 40rem;
-    height: 30rem;
+    height: 40rem;
     padding: 0 1.5rem;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     z-index: 10000;
-}
+    position: fixed;
+    top: 45%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    background-color: lightgray;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+    
+  }
+  
 .title{
     display: flex;
     justify-content: space-between;
@@ -30,25 +42,30 @@
 .username{
     border: 1px solid;
     border-radius: 50%;
-    background-color: blue;
+    /* background-color: blue; */
+    background-color: rgb(0, 217, 255);
     padding: .3rem;
 }
-.firstInputBox{
+.paraTwo{
     margin-left: 2.7rem;
     width: 25rem;
-    height: 3.5rem;   
-    margin-bottom: .5rem;
+    height: 5rem;   
+    
 }
 .secondInputBox{
     margin-left: .8rem;
     width: 25rem;
     height: 1.8rem;   
 }
-.comments{
-    margin-left: 1rem;
+
+.inputDiv{
+    margin-left: 2.7rem;
+    height: 5rem;
+    margin-bottom: 5rem;
+    
 }
-.commentsTime{
-    margin-left: 2.9rem;
-    margin-top: 0;
-    font-size: small;
+
+.firstInputBox{
+    width: 35rem;
+    height: 5rem;   
 }
