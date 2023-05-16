@@ -115,6 +115,7 @@ export default function PopUp() {
                   value={newTaskname}
                   onChange={handleName}
                   className={popup.tasknameInput}
+                  
                 />
                 <Button onClick={() => handleTaskname(tindex)}>Save</Button>
                 <Button onClick={handleCancelName}>Cancel</Button>
@@ -144,6 +145,7 @@ export default function PopUp() {
                 placeholder="Add a more detailed description..."
                 value={description}
                 onChange={handleChange}
+                
               />
               <Button onClick={() => addDescription(tindex)}>Save</Button>
               <Button onClick={handleCancelDescription}>Cancel</Button>
@@ -157,7 +159,7 @@ export default function PopUp() {
             </>
           )}
         </div>
-        <div className={popup.des}>
+        <div className={popup.activity}>
           <ReceiptLongIcon sx={{ marginRight: "1rem" }} /> <h4>Activity</h4>
         </div>
         <span className={popup.username}>PR</span>

@@ -1,6 +1,7 @@
-*{
+* {
     font-family: Arial, sans-serif;
 }
+
 .mainDiv {
     margin: 0 30%;
     margin-top: 4rem;
@@ -16,63 +17,76 @@
     transform: translate(-50%, -50%);
     background-color: lightgray;
     /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-    
-  }
-  
-.title{
+
+}
+
+.title {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.head{
+
+.head {
     margin-bottom: 0;
 }
-.radio{
+
+.radio {
     margin-right: .5rem;
 }
-.tasknameInput{
+
+.tasknameInput {
     height: 1.2rem;
     width: 10rem;
 }
-.para{
+
+.para {
     margin-left: 2.7rem;
-    
+
 }
-.des{
+
+.des {
     /* margin-top: 1rem; */
     margin-bottom: 0;
     display: flex;
     align-items: center;
 }
-
-.username{
+.activity{
+    display: flex;
+    align-items: center;
+    margin-top: -2rem;
+}
+.username {
     border: 1px solid;
     border-radius: 50%;
     /* background-color: blue; */
     background-color: rgb(0, 217, 255);
     padding: .3rem;
 }
-.paraTwo{
+
+.paraTwo {
     margin-left: 2.7rem;
     width: 25rem;
-    height: 5rem;   
-    
-}
-.secondInputBox{
-    margin-left: .8rem;
-    width: 25rem;
-    height: 1.8rem;   
+    height: 5rem;
+
 }
 
-.inputDiv{
+.secondInputBox {
+    margin-left: .8rem;
+    width: 25rem;
+    height: 1.8rem;
+}
+
+.inputDiv {
     margin-left: 2.7rem;
     height: 5rem;
     margin-bottom: 5rem;
-    
+
 }
 
-.firstInputBox{
+.firstInputBox {
+
     width: 35rem;
-    height: 7rem;   
+    height: 6rem;
     /* padding: 0; */
+
 }
