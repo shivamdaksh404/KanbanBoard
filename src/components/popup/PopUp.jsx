@@ -10,7 +10,6 @@ import {
   data,
   demo,
   descriptionState,
-  // dummy,
   ListId,
   newTasknameState,
   taskIndex,
@@ -18,12 +17,13 @@ import {
 
 export default function PopUp() {
   const [List, setList] = useRecoilState(data);
-  const [taskname, settaskname] = useRecoilState(demo);
-  const [tindex, settindex] = useRecoilState(taskIndex);
-  const [listid, setlistid] = useRecoilState(ListId);
+  const [taskname, setTaskname] = useRecoilState(demo);
+  const [tindex, setTindex] = useRecoilState(taskIndex);
+  const [listid, setListid] = useRecoilState(ListId);
   const navigate = useNavigate();
   const [description, setDescription] = useRecoilState(descriptionState);
-  const [newTaskname, setnewTaskname] = useRecoilState(newTasknameState);
+  const [newTaskname, setNewTaskname] = useRecoilState(newTasknameState);
+  const [isEditing, setIsEditing] = useState(false);
 
   function handleChange(e) {
     setDescription(e.target.value);
@@ -50,8 +50,9 @@ export default function PopUp() {
   }
 
   function handleName(e) {
-    setnewTaskname(e.target.value);
+    setNewTaskname(e.target.value);
   }
+
   function handleTaskname(id) {
     let newList = List.map((item) => {
       if (item.id === listid) {
@@ -69,7 +70,8 @@ export default function PopUp() {
     });
     setList(newList);
     localStorage.setItem("List", JSON.stringify(newList));
-    setnewTaskname("");
+    setNewTaskname("");
+    setIsEditing(false);
   }
 
   useEffect(() => {
@@ -77,22 +79,39 @@ export default function PopUp() {
 
     if (ListObject) {
       const TaskObject = ListObject.list[tindex];
-      settaskname(TaskObject);
+      setTaskname(TaskObject);
     }
-  }, [List]);
+  }, [List, listid, setTaskname, tindex]);
+
+  const handleTaskNameClick = () => {
+    setIsEditing(true);
+  };
+
   return (
     <>
       <div className={popup.mainDiv}>
         <div className={popup.title}>
-          <h2 className={popup.head}>
-            <span>📻</span> <span>{taskname.name} </span> <input onChange={handleName} />
-          <Button onClick={() => handleTaskname(tindex)}>save</Button>
-          </h2>
+          {isEditing ? (
+            <>
+              <h2 className={popup.head}>
+                <span className={popup.radio}>📻</span>
+
+                <input value={newTaskname} onChange={handleName} />
+                <Button onClick={() => handleTaskname(tindex)}>Save</Button>
+              </h2>
+            </>
+          ) : (
+            <>
+              <h2 className={popup.head} onClick={handleTaskNameClick}>
+                <span className={popup.radio}>📻</span>
+                <span>{taskname.name}</span>
+                <Button onClick={() => setIsEditing(true)}>Edit</Button>
+              </h2>
+            </>
+          )}
           <span onClick={() => navigate("/")}>❌</span>
         </div>
-        <div>
-          
-        </div>
+        <div> </div>
         <span className={popup.para}>in list To Do</span>
         <div className={popup.des}>
           <MenuIcon sx={{ marginRight: "1rem" }} /> <h4>Description</h4>
@@ -105,7 +124,7 @@ export default function PopUp() {
             value={description}
             onChange={handleChange}
           />
-          <Button onClick={() => addDescription(tindex)}>save</Button>
+          <Button onClick={() => addDescription(tindex)}>Save</Button>
         </div>
         <div className={popup.des}>
           <ReceiptLongIcon sx={{ marginRight: "1rem" }} /> <h4>Activity</h4>
