@@ -3,7 +3,7 @@
 }
 .mainDiv {
     margin: 0 30%;
-    margin-top: 2rem;
+    margin-top: 4rem;
     border: 1px solid;
     width: 40rem;
     height: 40rem;
@@ -30,12 +30,16 @@
 .radio{
     margin-right: .5rem;
 }
+.tasknameInput{
+    height: 1.2rem;
+    width: 10rem;
+}
 .para{
     margin-left: 2.7rem;
     
 }
 .des{
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     margin-bottom: 0;
     display: flex;
     align-items: center;
@@ -69,5 +73,6 @@
 
 .firstInputBox{
     width: 35rem;
-    height: 5rem;   
+    height: 7rem;   
+    /* padding: 0; */
 }
