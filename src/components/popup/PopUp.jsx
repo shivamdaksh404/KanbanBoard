@@ -87,6 +87,11 @@ export default function PopUp() {
     setIsEditing(true);
   };
 
+  const handleCancel = () => {
+    setIsEditing(false);
+    setNewTaskname("");
+  };
+
   return (
     <>
       <div className={popup.mainDiv}>
@@ -95,9 +100,9 @@ export default function PopUp() {
             <>
               <h2 className={popup.head}>
                 <span className={popup.radio}>📻</span>
-
                 <input value={newTaskname} onChange={handleName} />
                 <Button onClick={() => handleTaskname(tindex)}>Save</Button>
+                <Button onClick={handleCancel}>Cancel</Button>
               </h2>
             </>
           ) : (
