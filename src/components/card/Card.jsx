@@ -15,11 +15,15 @@ export default function Card(props) {
   const [tindex, settindex] = useRecoilState(taskIndex);
   const [id, setid] = useRecoilState(ListId);
   const navigate = useNavigate();
+
   const [isEditVisible, setIsEditVisible] = useState("");
+  useEffect(() => {
+    const storedList = localStorage.getItem("List");
     if (storedList) {
       setList(JSON.parse(storedList));
-    }
-  }, []);
+}
+},[]);
+  
 
   function taskClick(taskname, index) {
     setname(taskname);
@@ -46,9 +50,9 @@ export default function Card(props) {
   console.log("form delelt",props.taskData[Index])
   };
 
-  function handleShowEdit(index) {
-    setHoveredIndex(index);
-  }
+  // function handleShowEdit(index) {
+  //   setHoveredIndex(index);
+  // }
 
   return (
     <div>
