@@ -3,7 +3,7 @@ import AddCard from "./AddCard";
 import { ListId, demo, storess, taskIndex } from "../../atom/Atom";
 import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
-// import "./Card.css";
+import style from "./Card.module.css";
 import PopupState, {
   bindTrigger,
   bindPopover,
@@ -90,55 +90,61 @@ export default function Card({ name, items, id }) {
             </PopupState>
           </div>
           <div className="items-container">
-            {items.map((item, index) => (
-              <Draggable draggableId={item.id} index={index} key={item.id}>
-                {(provided) => (
-                  <div
-                    className="item-container"
-                    {...provided.dragHandleProps}
-                    {...provided.draggableProps}
-                    ref={provided.innerRef}
-                    onMouseOver={() => handleShowEdit(index)}
-                    onMouseOut={() => handleHideEdit(index)}
-                  >
-                    <h4 onClick={() => taskClick(item, index)}>{item.name}</h4>
-                    {isEditVisible === index ? (
-                      <div className="icon_btn">
-                        <IconButton
-                          sx={{
-                            "&:hover": {
-                              borderRadius: "5px",
-                              backgroundColor: "whitesmoke",
-                            },
-                          }}
-                          aria-label="edit"
-                        >
-                          <EditSharpIcon fontSize="small" />
-                        </IconButton>
+            <div className={style.addCard}>
+              <div className={style.todoTasks}>
+                {items.map((item, index) => (
+                  <Draggable draggableId={item.id} index={index} key={item.id}>
+                    {(provided) => (
+                      <div
+                      className={style.taskLists}
+                        {...provided.dragHandleProps}
+                        {...provided.draggableProps}
+                        ref={provided.innerRef}
+                        onMouseOver={() => handleShowEdit(index)}
+                        onMouseOut={() => handleHideEdit(index)}
+                      >
+                        <h4 onClick={() => taskClick(item, index)}>
+                          {item.name}
+                        </h4>
+                        {isEditVisible === index ? (
+                          <div className={style.icon_btn}>
+                            <IconButton
+                              sx={{
+                                "&:hover": {
+                                  borderRadius: "5px",
+                                  backgroundColor: "whitesmoke",
+                                },
+                              }}
+                              aria-label="edit"
+                            >
+                              <EditSharpIcon fontSize="small" />
+                            </IconButton>
 
-                        <IconButton
-                          onClick={() => handleDeleteCard(index)}
-                          sx={{
-                            "&:hover": {
-                              borderRadius: "5px",
-                              backgroundColor: "whitesmoke",
-                            },
-                          }}
-                          color="error"
-                          aria-label="edit"
-                        >
-                          <DeleteIcon fontSize="small" />
-                        </IconButton>
+                            <IconButton
+                              onClick={() => handleDeleteCard(index)}
+                              sx={{
+                                "&:hover": {
+                                  borderRadius: "5px",
+                                  backgroundColor: "whitesmoke",
+                                },
+                              }}
+                              color="error"
+                              aria-label="edit"
+                            >
+                              <DeleteIcon fontSize="small" />
+                            </IconButton>
+                          </div>
+                        ) : (
+                          ""
+                        )}
                       </div>
-                    ) : (
-                      ""
                     )}
-                  </div>
-                )}
-              </Draggable>
-            ))}
-            {provided.placeholder}
-            <AddCard index={id} />
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+                <AddCard index={id} />
+              </div>
+            </div>
           </div>
         </div>
       )}

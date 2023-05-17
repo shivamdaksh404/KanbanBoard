@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-// import "./App.css";
+import styles from "./Board.module.css";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";
 // import MoreHorizSharpIcon from "@mui/icons-material/MoreHorizSharp";
