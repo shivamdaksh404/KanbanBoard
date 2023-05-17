@@ -1,21 +1,28 @@
 import React from "react";
-import styles from "./App.module.css";
-import Board from "./components/board/Board";
-
-import { Routes, Route } from "react-router-dom";
-import PopUp from "./components/popup/PopUp";
+import { Routes, Route, useParams, useNavigate } from "react-router-dom";
 import Navbar from "./components/navBar/Navbar";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import Board from "./components/board/Board";
+import PopUp from "./components/popup/PopUp";
+
 export default function App() {
   return (
-   <>
-<Navbar/>
-    <Routes>
-      <Route path="/" element={<Board />} />
-      <Route path="/popup" element={<PopUp />} />
-    </Routes>
-   </> 
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Board />} />
+        <Route path="/popup/:listId/:taskId" element={<PopUpWrapper />} />
+      </Routes>
+    </>
   );
+}
+
+function PopUpWrapper() {
+  const { listId, taskId } = useParams();
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate("/");
+  };
+
+  return <PopUp listId={listId} taskId={taskId} onGoBack={handleGoBack} />;
 }
