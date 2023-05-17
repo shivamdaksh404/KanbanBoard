@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import {
   data,
   demo,
@@ -205,7 +205,7 @@ export default function PopUp() {
           placeholder="Write a comment..."
         />
         <br /> <br />
-        <Comments />
+        <Comments cardName={listName}/>
       </div>
     </>
   );
