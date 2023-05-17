@@ -30,20 +30,13 @@ export default function Card({ name, items, id }) {
   };
   const handleHideEdit = (index) => {
     setIsEditVisible(-1);
-//   };
-// <<<<<<< Day_7_Shivam
+  };
 
-//   function handleDeleteCard(index) {
-//     let newList = List.map((item) => {
-//       if (item.id === props.index) {
-//         let updatedItem = { ...item };
-//         updatedItem.list = updatedItem.list.filter((_, id) => index !== id);
-// =======
   function taskClick(taskname, index) {
     settask(taskname);
     settindex(index);
     setlid(id);
-    navigate("/popup");
+    navigate(`/popup/${id}/${index}`);
   }
   function handleListdelete(id) {
     let FilteredList = List.filter((obj) => id !== obj.id);
@@ -55,7 +48,7 @@ export default function Card({ name, items, id }) {
       if (item.id === id) {
         let updatedItem = { ...item };
         updatedItem.items = updatedItem.items.filter((_, id) => index !== id);
-// >>>>>>> new-dragNdrop
+
         return updatedItem;
       }
       return item;
@@ -120,12 +113,13 @@ export default function Card({ name, items, id }) {
     <Droppable droppableId={id}>
       {(provided) => (
         <div
-          className="items"
+          // className="items"
+          className={style.addCard}
           {...provided.droppableProps}
           ref={provided.innerRef}
         >
-          <div className="store-container">
-            <h3>{name}</h3>
+          <div className={style.card}>
+            <h1>{name}</h1>
             <PopupState variant="popover" popupId="demo-popup-popover">
               {(popupState) => (
                 <div>
@@ -152,7 +146,8 @@ export default function Card({ name, items, id }) {
             </PopupState>
           </div>
           <div className="items-container">
-            <div className={style.addCard}>
+            <div 
+            >
               <div className={style.todoTasks}>
                 {items.map((item, index) => (
                   <Draggable draggableId={item.id} index={index} key={item.id}>
@@ -165,13 +160,14 @@ export default function Card({ name, items, id }) {
                         onMouseOver={() => handleShowEdit(index)}
                         onMouseOut={() => handleHideEdit(index)}
                       >
-                        <h4 onClick={() => taskClick(item, index)}>
+                        <p >
                           {item.name}
-                        </h4>
+                        </p>
                         {isEditVisible === index ? (
                           <div className={style.icon_btn}>
-                            <IconButton
-                              sx={{
+                            <IconButton onClick={() => taskClick(item, index)}
+                              sx={{ background:"#131313",
+                                  borderRadius: "5px",
                                 "&:hover": {
                                   borderRadius: "5px",
                                   backgroundColor: "whitesmoke",
@@ -208,7 +204,7 @@ export default function Card({ name, items, id }) {
               </div>
             </div>
           </div>
-// >>>>>>> new-dragNdrop
+{/* // >>>>>>> new-dragNdrop */}
         </div>
       )}
     </Droppable>

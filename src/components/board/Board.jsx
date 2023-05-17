@@ -18,7 +18,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Navbar from '../navBar/Navbar'
 import Card from "../card/Card";
 import { useRecoilState } from "recoil";
-import { data } from "../../atom/Atom";
+// import { data } from "../../atom/Atom";
 import MainNavbar from "../mainNavbar/MainNavbar";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { storess } from "../../atom/Atom";
@@ -112,6 +112,8 @@ function Board() {
     setisShowBtn(true);
     setisShow(false);
   }
+// This is from Shivam
+
 
 //   function handleListDelete(id) {
 //     let filteredList = List.filter((_, index) => id !== index);
@@ -209,20 +211,22 @@ function Board() {
 //                 variant="contained"
 //                 size="small"
 //                 startIcon={<AddSharpIcon />}
+
+/// this is from dragDrop
   return (
-    <div className="layout__wrapper">
-      <div className="card">
+    <div className={styles.mainContainer} >
+      <div 
+      className={styles.wrappercontainer}
+      >
         <DragDropContext onDragEnd={handleDragAndDrop}>
-          <div className="header">
-            <h1>Shopping List</h1>
-          </div>
+    
           <Droppable droppableId="ROOT" type="group">
             {(provided) => (
               <div
                 {...provided.droppableProps}
                 ref={provided.innerRef}
-                className="container"
-
+                // className="container"
+                className={styles.container}
               >
                 {stores.map((store, index) => (
                   <Draggable
@@ -231,7 +235,7 @@ function Board() {
                     key={store.id}
                   >
                     {(provided) => (
-                      <div
+                      <div className={styles.card}
                         {...provided.dragHandleProps}
                         {...provided.draggableProps}
                         ref={provided.innerRef}
@@ -290,18 +294,12 @@ function Board() {
                 </IconButton>
               </div>
             </div>
-// <<<<<<< Day_7_Shivam
-//           </div>
-//         )}
-//       </Grid>
-//     </Grid>
-//     </>
-// =======
+
           )}
         </DragDropContext>
       </div>
     </div>
-// >>>>>>> new-dragNdrop
+
   );
 }
 
