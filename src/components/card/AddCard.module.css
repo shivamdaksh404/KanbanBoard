@@ -1,71 +1,60 @@
-{
-        /*for inistial state UI*/
-    }
-
-    .mainDiv {
-        display: flex;
-        flex-direction: row;
-        /* border: 1px solid; */
-        padding: 0.4rem;
-    }
-
-        {
-        /**/
-    }
-
-    .IconDiv {
-        /* border: 1px solid red; */
-    }
-
-        {
-        /**/
-    }
-
-    .cardText {
-        font-size: medium;
-    }
+.mainDiv {
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid; */
+    padding: 0.4rem;
+}
 
 
-        {
-        /* after click the button  */
-    }
 
-    .secondMainDiv {
-
-        width: 100%;
-        height: 100%;
-        /* border: 1px solid green */
-
-    }
-
-    .secondMainDiv>textarea {
-        width: 99.5%;
-        height: 5rem;
-        outline: none;
-        line-height: 2rem;
-        border-radius: 10px;
-        font-size: 16px;
-        background: #fbfbfb;
-        border: 2px solid transparent;
-        box-shadow: 0 0 0 1px #dddddd, 0 2px 4px 0 rgb(0 0 0 / 7%), 0 1px 1.5px 0 rgb(0 0 0 / 5%);
-/* text-overflow: clip; */
-        resize: none;
-
-    }
-
-    .Btn_icon { 
-        /* border: 1px solid navy; */
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        gap: .5rem;
-
-    }
-
-    .addTaskDiv {
-        /* border: 1px solid red; */
-        display: flex;
-        justify-content: space-between;
+/* .IconDiv {
+        border: 1px solid red;
+    } */
 
 
-    }
+
+.cardText {
+    font-size: medium;
+}
+
+
+
+.secondMainDiv {
+
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid green */
+
+}
+
+.secondMainDiv>textarea {
+    width: 99.5%;
+    height: 5rem;
+    outline: none;
+    line-height: 2rem;
+    border-radius: 10px;
+    font-size: 16px;
+    background: #fbfbfb;
+    border: 2px solid transparent;
+    box-shadow: 0 0 0 1px #dddddd, 0 2px 4px 0 rgb(0 0 0 / 7%), 0 1px 1.5px 0 rgb(0 0 0 / 5%);
+    /* text-overflow: clip; */
+    resize: none;
+
+}
+
+.Btn_icon {
+    /* border: 1px solid navy; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: .5rem;
+
+}
+
+.addTaskDiv {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+
+
+}

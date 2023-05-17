@@ -4,7 +4,6 @@ import AddCard from "./AddCard";
 import { IconButton } from "@mui/material";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
 import DeleteIcon from "@mui/icons-material/Delete";
-
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { data, demo, ListId, taskIndex } from "../../atom/Atom";
@@ -28,11 +27,13 @@ export default function Card(props) {
     setname(taskname);
     settindex(index);
     setid(props.index);
-    navigate("/popup");
+    navigate(`/popup/${props.index}/${index}`);
   }
-  const handleShowEdit = (Index) => {
-    setIsEditVisible(Index);
+
+  const handleShowEdit = (index) => {
+    setIsEditVisible(index);
   };
+
   const handleHideEdit = (index) => {
     setIsEditVisible(-1);
   };
@@ -55,6 +56,7 @@ export default function Card(props) {
       <div className={style.addCard}>
         <div className={style.todoTasks}>
           {props.taskData.map((ele, index) => (
+
             <>
               <li
                 key={index}
