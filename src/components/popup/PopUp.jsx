@@ -130,7 +130,7 @@ export default function PopUp() {
               </h2>
             </>
           )}
-          <span onClick={() => navigate("/")}>❌</span>
+          <span className={popup.closeBtn} onClick={() => navigate("/")}>❌</span>
         </div>
         <div>
           {isEditingListName ? (

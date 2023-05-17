@@ -38,57 +38,68 @@ export default function Card(props) {
     setIsEditVisible(-1);
   };
 
-  const handleDeleteCard = (index) => {
-    let updatedList = [...List];
-    updatedList[props.index].list = updatedList[props.index].list.filter(
-      (_, i) => i !== index
-    );
-    setList(updatedList);
-    localStorage.setItem("List", JSON.stringify(updatedList));
-  };
+  function handleDeleteCard(index) {
+    let newList = List.map((item) => {
+      if (item.id === props.index) {
+        let updatedItem = { ...item };
+        updatedItem.list = updatedItem.list.filter((_, id) => index !== id);
+        return updatedItem;
+      }
+      return item;
+    });
+    setList(newList);
+    localStorage.setItem("List", JSON.stringify(newList));
+  }
 
   return (
     <div>
       <div className={style.addCard}>
         <div className={style.todoTasks}>
           {props.taskData.map((ele, index) => (
-            <li
-              key={index}
-              onMouseOver={() => handleShowEdit(index)}
-              onMouseOut={() => handleHideEdit(index)}
-              className={style.taskLists}
-              onClick={() => taskClick(ele, index)}
-            >
-              <p>{ele.name}</p>
-              {isEditVisible === index && (
-                <div className={style.icon_btn}>
-                  <IconButton
-                    sx={{
-                      "&:hover": {
-                        borderRadius: "5px",
-                        backgroundColor: "whitesmoke",
-                      },
-                    }}
-                    aria-label="edit"
-                  >
-                    <EditSharpIcon fontSize="small" />
-                  </IconButton>
-                  <IconButton
-                    onClick={() => handleDeleteCard(index)}
-                    sx={{
-                      "&:hover": {
-                        borderRadius: "5px",
-                        backgroundColor: "whitesmoke",
-                      },
-                    }}
-                    color="error"
-                    aria-label="delete"
-                  >
-                    <DeleteIcon fontSize="small" />
-                  </IconButton>
-                </div>
-              )}
-            </li>
+
+            <>
+              <li
+                key={index}
+                onMouseOver={() => handleShowEdit(index)}
+                onMouseOut={() => handleHideEdit(index)}
+                className={style.taskLists}
+              >
+                <p>{ele.name}</p>
+
+                {isEditVisible === index ? (
+                  <div className={style.icon_btn}>
+                    <IconButton
+                      sx={{
+                        "&:hover": {
+                          borderRadius: "5px",
+                          backgroundColor: "whitesmoke",
+                        },
+                      }}
+                      aria-label="edit"
+                      onClick={() => taskClick(ele, index)}
+                    >
+                      <EditSharpIcon fontSize="small" />
+                    </IconButton>
+
+                    <IconButton
+                      onClick={() => handleDeleteCard(index)}
+                      sx={{
+                        "&:hover": {
+                          borderRadius: "5px",
+                          backgroundColor: "whitesmoke",
+                        },
+                      }}
+                      color="error"
+                      aria-label="edit"
+                    >
+                      <DeleteIcon fontSize="small" />
+                    </IconButton>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </li>
+            </>
           ))}
         </div>
         <AddCard index={props.index} />

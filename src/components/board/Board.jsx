@@ -3,16 +3,23 @@ import Typography from "@mui/material/Typography";
 import { Button, Grid, IconButton } from "@mui/material";
 import Popover from "@mui/material/Popover";
 import { v4 as uuidv4 } from "uuid";
-import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
+
+import PopupState, {
+  bindTrigger,
+  bindPopover,
+  bindDialog,
+} from "material-ui-popup-state";
+import { Grid, IconButton, listClasses } from "@mui/material";
 import styles from "./Board.module.css";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";
 import MoreHorizSharpIcon from "@mui/icons-material/MoreHorizSharp";
 import DeleteIcon from "@mui/icons-material/Delete";
-
+import Navbar from '../navBar/Navbar'
 import Card from "../card/Card";
 import { useRecoilState } from "recoil";
 import { data } from "../../atom/Atom";
+import MainNavbar from "../mainNavbar/MainNavbar";
 
 export default function Board() {
   const [List, setList] = useRecoilState(data);
@@ -34,9 +41,6 @@ export default function Board() {
   function handleTaskAdd() {
     if (inputvalue.length === 0) {
       input.focus();
-    } else {
-      let newlist = { name: inputvalue, id: uuidv4(), list: [] };
-      setList((prev) => [...prev, newlist]);
       localStorage.setItem("List", JSON.stringify([...List, newlist]));
       setinputvalue("");
     }
@@ -57,9 +61,22 @@ export default function Board() {
     localStorage.setItem("List", JSON.stringify(filteredList));
     setList(filteredList);
   }
-
   return (
-    <Grid container sx={{ marginTop: "1rem", marginLeft: "1rem" }}>
+    <>
+    {/* <MainNavbar/> */}
+    {/* <Navbar /> */}
+    <Grid className={styles.mainContainer}
+      container
+      sx={{
+        flexWrap: "nowrap",
+        paddingTop: "2rem",
+        paddingLeft: "1rem",
+        paddingRight: "1rem",
+        overflowX:"scroll",
+        height:"100%",
+        // overflow : "hidden",
+      }}
+    >
       {List.map((item, index) => (
         <Grid item md={3} key={index}>
           <div className={styles.card}>
@@ -85,7 +102,7 @@ export default function Board() {
                         horizontal: "center",
                       }}
                     >
-                      <IconButton onClick={() => handleListDelete(index)}>
+                      <IconButton onClick={() => handleListdelete(index)}>
                         <DeleteIcon fontSize="small" />
                       </IconButton>
                     </Popover>
@@ -110,7 +127,7 @@ export default function Board() {
 
               borderRadius: "10px",
               color: "white",
-              width: "22rem",
+              width: "18rem",
               height: "2.5rem",
               marginLeft: "10px",
               "&:hover": {
@@ -147,5 +164,6 @@ export default function Board() {
         )}
       </Grid>
     </Grid>
+    </>
   );
 }

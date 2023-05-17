@@ -1,0 +1,67 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.container{
+    height: 92vh;
+    width: 100%;
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    /* background-color: #000000a1; */
+    color: #ffffff;
+    backdrop-filter: blur(5px);
+    border-right: 1px solid white;
+    
+}
+.header{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 0.1rem solid white;
+}
+.header >h1{
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+.top{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+.top span{
+    font-size: 20px;
+    margin-left: 0.5rem;
+}
+.top p{
+    margin-top: 0.5rem;
+}
+.workspace{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+.workspace >h1{
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+.workspace span{
+    font-size: 20px;
+    margin-left: 0.5rem;
+
+}
+.workspace p{
+    margin-top: 0.5rem;
+}
+.boards{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
