@@ -1,0 +1,80 @@
+.store-container {
+    background-color: #f4f5f7;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .store-container h3 {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .items{
+        width: 400px;
+      border: 1px solid black;
+}
+.items-container {
+      background-color: #f2f2f2;
+    border-radius: 4px;
+    padding: 8px;
+  }
+  
+  .item-container {
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+  
+  .item-container h4 {
+    font-size: 14px;
+    margin: 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  .item-container:hover {
+    background-color: #f2f2f2;
+  }
+  
+  /* Styles for react-beautiful-dnd */
+  .react-beautiful-dnd-draggable {
+    margin-bottom: 8px;
+  }
+  
+  .react-beautiful-dnd-drag-handle {
+    user-select: none;
+    background-color: #f2f2f2;
+    border-radius: 4px;
+    padding: 4px;
+    cursor: grab;
+  }
+  
+  .react-beautiful-dnd-draggable:hover .react-beautiful-dnd-drag-handle {
+    background-color: #e0e0e0;
+  }
+  
+  .react-beautiful-dnd-droppable {
+    min-height: 32px;
+    padding: 8px;
+    background-color: #f2f2f2;
+    border-radius: 4px;
+  }
+  
+  .react-beautiful-dnd-draggable.react-beautiful-dnd-draggable--dragging {
+    opacity: 0.8;
+  }
+  
+  .react-beautiful-dnd-droppable.react-beautiful-dnd-droppable--dragging .react-beautiful-dnd-draggable:not(.react-beautiful-dnd-draggable--dragging) {
+    opacity: 0.5;
+  }
+  .icon_btn{
+    display: flex;
+    z-index: 5;
+    margin: 5px;
+    position: relative;
+    /* left: 18rem; */
+}
