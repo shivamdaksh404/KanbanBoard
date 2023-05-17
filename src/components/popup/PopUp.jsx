@@ -159,26 +159,31 @@ export default function PopUp() {
             </>
           )}
         </div>
-        <div className={popup.des}>
-          <MenuIcon sx={{ marginRight: "1rem" }} /> <h4>Description</h4>
-        </div>
         <div className={popup.inputDiv}>
           {isEditingDescription ? (
             <>
+              <div className={popup.des}>
+                <MenuIcon sx={{ marginRight: "1rem" }} /> <h4>Description</h4>
+              </div>
               <input
                 className={popup.firstInputBox}
                 placeholder="Add a more detailed description..."
                 value={description}
                 onChange={handleChange}
-              />
+              /> <br />
+              <div className={popup.buttons}>
               <Button onClick={() => addDescription(tindex)}>Save</Button>
               <Button onClick={handleCancelDescription}>Cancel</Button>
+              </div>
             </>
           ) : (
             <>
-              <span style={{ display: "flex" }}>
-                <p>{taskname.description}</p>
+              <div className={popup.des}>
+                <MenuIcon sx={{ marginRight: "1rem" }} /> <h4>Description</h4>
                 <Button onClick={handleDescriptionClick}>Edit</Button>{" "}
+              </div>
+              <span style={{ display: "flex" }}>
+                <p className={popup.description}>{taskname.description}</p>
               </span>
             </>
           )}
