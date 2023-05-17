@@ -67,7 +67,6 @@ export default function PopUp() {
     localStorage.setItem("List", JSON.stringify(newList));
     setIsEditingName(false);
   };
-  
 
   useEffect(() => {
     const listObject = List.find((item) => item.id === listid);
@@ -80,11 +79,6 @@ export default function PopUp() {
 
   const handleTaskNameClick = () => {
     setIsEditingName(true);
-  };
-
-  const handleCancelName = () => {
-    setIsEditingName(false);
-    setNewTaskname("");
   };
 
   const handleDescriptionClick = () => {
@@ -126,7 +120,6 @@ export default function PopUp() {
                 />
 
                 <Button onClick={() => handleTaskname(tindex)}>Save</Button>
-                <Button onClick={handleCancelName}>Cancel</Button>
               </h2>
             </>
           ) : (
@@ -170,10 +163,11 @@ export default function PopUp() {
                 placeholder="Add a more detailed description..."
                 value={description}
                 onChange={handleChange}
-              /> <br />
+              />{" "}
+              <br />
               <div className={popup.buttons}>
-              <Button onClick={() => addDescription(tindex)}>Save</Button>
-              <Button onClick={handleCancelDescription}>Cancel</Button>
+                <Button onClick={() => addDescription(tindex)}>Save</Button>
+                <Button onClick={handleCancelDescription}>Cancel</Button>
               </div>
             </>
           ) : (
