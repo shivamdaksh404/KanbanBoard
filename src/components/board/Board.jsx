@@ -61,7 +61,7 @@ export default function Board() {
   return (
     <Grid container sx={{ marginTop: "1rem", marginLeft: "1rem" }}>
       {List.map((item, index) => (
-        <Grid md={3} key={index}>
+        <Grid item md={3} key={index}>
           <div className={styles.card}>
             <h2 className={styles.listHeading}>
               {item.name}
@@ -97,7 +97,7 @@ export default function Board() {
           </div>
         </Grid>
       ))}
-      <Grid md={3}>
+      <Grid item md={3}>
         {isShowBtn && (
           <Button
             variant="outlined"
