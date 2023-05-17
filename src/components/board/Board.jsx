@@ -3,7 +3,11 @@ import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import Popover from "@mui/material/Popover";
 import { v4 as uuidv4 } from "uuid";
-import PopupState, { bindTrigger, bindPopover, bindDialog } from "material-ui-popup-state";
+import PopupState, {
+  bindTrigger,
+  bindPopover,
+  bindDialog,
+} from "material-ui-popup-state";
 // import { PopupState } from "material-ui-popup-state";
 import { Grid, IconButton, listClasses } from "@mui/material";
 import styles from "./Board.module.css";
@@ -35,16 +39,14 @@ export default function Board() {
   }
 
   function handleTaskAdd() {
-
-    if(inputvalue.length===0){
-      input.focus()
-    } else if(inputvalue.length>0){
-
-    let newlist = { name: inputvalue, id: uuidv4(), list: [] };
-    setList((prev) => [...prev, newlist]);
-    localStorage.setItem("List", JSON.stringify([...List, newlist]));
-    setinputvalue("");
-    console.log(List);
+    if (inputvalue.length === 0) {
+      input.focus();
+    } else if (inputvalue.length > 0) {
+      let newlist = { name: inputvalue, id: uuidv4(), list: [] };
+      setList((prev) => [...prev, newlist]);
+      localStorage.setItem("List", JSON.stringify([...List, newlist]));
+      setinputvalue("");
+      console.log(List);
     }
   }
   function handleClick() {
@@ -61,22 +63,25 @@ export default function Board() {
     setList(FilteredList);
   }
   return (
-    <Grid container sx={{
-marginTop:"1rem",
-marginLeft: "1rem"
-
-    }}>
+    <Grid
+      container
+      sx={{
+        marginTop: "1rem",
+        marginLeft: "1rem",
+      }}
+    >
       {List.map((item, index) => (
         <Grid md={3}>
           <div className={styles.card} key={index}>
             <h2 className={styles.listHeading}>
               {item.name}
-              <PopupState 
-            
-              variant="popover" popupId="demo-popup-popover">
+              <PopupState variant="popover" popupId="demo-popup-popover">
                 {(popupState) => (
                   <div>
-                    <IconButton variant="contained" {...bindTrigger(popupState)}>
+                    <IconButton
+                      variant="contained"
+                      {...bindTrigger(popupState)}
+                    >
                       <MoreHorizSharpIcon />
                     </IconButton>
                     <Popover
@@ -88,13 +93,11 @@ marginLeft: "1rem"
                       transformOrigin={{
                         vertical: "top",
                         horizontal: "center",
-                        
                       }}
                     >
-                      {/* <Typography sx={{ p: 1 }}> */}
-                        <IconButton onClick={() => handleListdelete(index)}>
+                      <IconButton onClick={() => handleListdelete(index)}>
                         <DeleteIcon fontSize="small" />
-                        </IconButton>
+                      </IconButton>
                       {/* </Typography> */}
                     </Popover>
                   </div>
@@ -120,11 +123,10 @@ marginLeft: "1rem"
               width: "22rem",
               height: "2.5rem",
               marginLeft: "10px",
-              "&:hover" :{
-              backgroundColor: "#ffffff26",
-              border: "none",
-
-              }
+              "&:hover": {
+                backgroundColor: "#ffffff26",
+                border: "none",
+              },
             }}
           >
             Add Another List

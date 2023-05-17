@@ -21,9 +21,8 @@ export default function Card(props) {
     const storedList = localStorage.getItem("List");
     if (storedList) {
       setList(JSON.parse(storedList));
-}
-},[]);
-  
+    }
+  }, []);
 
   function taskClick(taskname, index) {
     setname(taskname);
@@ -34,25 +33,22 @@ export default function Card(props) {
   const handleShowEdit = (Index) => {
     setIsEditVisible(Index);
   };
-  const handleHideEdit =(index)=>{
-    setIsEditVisible(-1)
-  }
-  
-  const handleDeleteCard = (Index) => {
-    // const filteredList = (props.taskData).filter((_,index) => index !== ID);
-  //  setList(filteredList)
-  // console.log(ID);
-  let data = [...List]
-  data = data.filter((_,index)=> index!==Index)
-  // setList(data)
-  console.log(List)
-  console.log(data)
-  console.log("form delelt",props.taskData[Index])
+  const handleHideEdit = (index) => {
+    setIsEditVisible(-1);
   };
 
-  // function handleShowEdit(index) {
-  //   setHoveredIndex(index);
-  // }
+  function handleDeleteCard(index) {
+    let newList = List.map((item) => {
+      if (item.id === props.index) {
+        let updatedItem = { ...item };
+        updatedItem.list = updatedItem.list.filter((_, id) => index !== id);
+        return updatedItem;
+      }
+      return item;
+    });
+    setList(newList);
+    localStorage.setItem("List", JSON.stringify(newList));
+  }
 
   return (
     <div>
@@ -65,7 +61,6 @@ export default function Card(props) {
                 onMouseOver={() => handleShowEdit(index)}
                 onMouseOut={() => handleHideEdit(index)}
                 className={style.taskLists}
-                onClick={() => taskClick(ele, index)}
               >
                 <p>{ele.name}</p>
 
@@ -79,6 +74,7 @@ export default function Card(props) {
                         },
                       }}
                       aria-label="edit"
+                      onClick={() => taskClick(ele, index)}
                     >
                       <EditSharpIcon fontSize="small" />
                     </IconButton>
@@ -102,7 +98,6 @@ export default function Card(props) {
                 )}
               </li>
             </>
-
           ))}
         </div>
         <AddCard index={props.index} />
