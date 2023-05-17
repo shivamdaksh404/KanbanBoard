@@ -53,11 +53,11 @@ export default function PopUp() {
     setTaskname((prevTaskname) => ({ ...prevTaskname, name: e.target.value }));
   }
 
-  function handleTaskname(id) {
+  const handleTaskname = (id) => {
     const newList = List.map((item) => {
       if (item.id === listid) {
         const newTasklist = item.list.map((obj, index) =>
-          index === id ? { ...obj, name: newTaskname } : obj
+          index === id ? { ...obj, name: taskname.name } : obj
         );
         return { ...item, list: newTasklist };
       }
@@ -65,9 +65,9 @@ export default function PopUp() {
     });
     setList(newList);
     localStorage.setItem("List", JSON.stringify(newList));
-    setNewTaskname("");
     setIsEditingName(false);
-  }
+  };
+  
 
   useEffect(() => {
     const listObject = List.find((item) => item.id === listid);
