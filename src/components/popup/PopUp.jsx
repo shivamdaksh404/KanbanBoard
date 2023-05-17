@@ -33,19 +33,14 @@ export default function PopUp() {
   }
 
   function addDescription(id) {
-    let newList = List.map((item) => {
+    const newList = List.map((item) => {
       if (item.id === listid) {
-        let newTasklist = item.list.map((obj, index) => {
-          if (index === id) {
-            return { ...obj, description: description };
-          } else {
-            return obj;
-          }
-        });
+        const newTasklist = item.list.map((obj, index) =>
+          index === id ? { ...obj, description: description } : obj
+        );
         return { ...item, list: newTasklist };
-      } else {
-        return item;
       }
+      return item;
     });
     setList(newList);
     localStorage.setItem("List", JSON.stringify(newList));
@@ -59,19 +54,14 @@ export default function PopUp() {
   }
 
   function handleTaskname(id) {
-    let newList = List.map((item) => {
+    const newList = List.map((item) => {
       if (item.id === listid) {
-        let newTasklist = item.list.map((obj, index) => {
-          if (index === id) {
-            return { ...obj, name: newTaskname };
-          } else {
-            return obj;
-          }
-        });
+        const newTasklist = item.list.map((obj, index) =>
+          index === id ? { ...obj, name: newTaskname } : obj
+        );
         return { ...item, list: newTasklist };
-      } else {
-        return item;
       }
+      return item;
     });
     setList(newList);
     localStorage.setItem("List", JSON.stringify(newList));
@@ -112,13 +102,9 @@ export default function PopUp() {
 
   const handleUpdateListName = () => {
     if (listName.trim() !== "") {
-      let newList = List.map((item) => {
-        if (item.id === listid) {
-          return { ...item, name: listName };
-        } else {
-          return item;
-        }
-      });
+      const newList = List.map((item) =>
+        item.id === listid ? { ...item, name: listName } : item
+      );
       setList(newList);
       localStorage.setItem("List", JSON.stringify(newList));
     }
@@ -205,7 +191,7 @@ export default function PopUp() {
           placeholder="Write a comment..."
         />
         <br /> <br />
-        <Comments cardName={listName}/>
+        <Comments cardName={listName} />
       </div>
     </>
   );
