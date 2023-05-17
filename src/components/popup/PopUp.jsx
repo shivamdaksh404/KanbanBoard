@@ -134,7 +134,7 @@ export default function PopUp() {
               <h2 className={popup.head} onClick={handleTaskNameClick}>
                 <span className={popup.radio}>📻</span>
                 <span>{taskname.name}</span>
-                {/* <Button onClick={() => setIsEditingName(true)}>Edit</Button> */}
+                
               </h2>
             </>
           )}
@@ -152,9 +152,9 @@ export default function PopUp() {
           ) : (
             <>
               <span className={popup.para}>
-                in list <span>{listName}</span>
+                in list <span onClick={handleListNameClick}>{listName}</span>
               </span>
-              <Button onClick={handleListNameClick}>Update List Name</Button>
+              
             </>
           )}
         </div>
