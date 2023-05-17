@@ -148,7 +148,7 @@ export default function PopUp() {
               <h2 className={popup.head} onClick={handleTaskNameClick}>
                 <span className={popup.radio}>📻</span>
                 <span>{taskname.name}</span>
-                <Button onClick={() => setIsEditingName(true)}>Edit</Button>
+                {/* <Button onClick={() => setIsEditingName(true)}>Edit</Button> */}
               </h2>
             </>
           )}
