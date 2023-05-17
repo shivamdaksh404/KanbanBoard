@@ -9,7 +9,7 @@ import PopupState, {
   bindPopover,
   bindDialog,
 } from "material-ui-popup-state";
-import { Grid, IconButton, listClasses } from "@mui/material";
+import { listClasses } from "@mui/material";
 import styles from "./Board.module.css";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";

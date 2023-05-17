@@ -1,4 +1,5 @@
 import Board from "../board/Board";
+import React from 'react'
 import MainNavbar from "../mainNavbar/MainNavbar";
 import Navbar from "../navBar/Navbar";
 import Sidebar from "../sidebar/Sidebar";

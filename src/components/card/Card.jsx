@@ -64,10 +64,10 @@ export default function Card(props) {
                 onMouseOut={() => handleHideEdit(index)}
                 className={style.taskLists}
               >
-                <p>{ele.name}</p>
+                <p key={index}>{ele.name}</p>
 
                 {isEditVisible === index ? (
-                  <div className={style.icon_btn}>
+                  <div className={style.icon_btn} key={index}>
                     <IconButton
                       sx={{
                         "&:hover": {
