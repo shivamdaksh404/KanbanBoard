@@ -10,14 +10,8 @@ export default function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Board />} />
-        <Route path="/popup/:listId/:taskId" element={<PopUpWrapper />} />
+        <Route path="/popup/:listId/:taskId" element={<PopUp />} />
       </Routes>
     </>
   );
-}
-
-function PopUpWrapper() {
-  const { listId, taskId } = useParams();
-
-  return <PopUp listId={listId} taskId={taskId} />;
 }
