@@ -10,6 +10,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import Home from './components/Home/Home'
 export default function App() {
   return (
+
    <>
     <Routes>
       {/* <Route path="/" element={<Board />} /> */}
@@ -17,6 +18,7 @@ export default function App() {
      <Route path="/popup/:listId/:taskId" element={<PopUp />} />
     </Routes>
    </> 
+
 
   );
 }
