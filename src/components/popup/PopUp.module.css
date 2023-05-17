@@ -90,3 +90,6 @@
     /* padding: 0; */
 
 }
+.closeBtn{
+    cursor: pointer;
+}

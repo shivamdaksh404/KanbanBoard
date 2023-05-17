@@ -19,6 +19,7 @@ export default function Navbar() {
     },
   };
   return (
+
     <nav className={style.mainContainer}>
       <ul className={style.leftContainer}>
         <li>

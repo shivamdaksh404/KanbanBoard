@@ -8,18 +8,17 @@ import PopupState, {
   bindPopover,
   bindDialog,
 } from "material-ui-popup-state";
-// import { PopupState } from "material-ui-popup-state";
 import { Grid, IconButton, listClasses } from "@mui/material";
 import styles from "./Board.module.css";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";
-// import Button from "@mui/material/Button";
 import MoreHorizSharpIcon from "@mui/icons-material/MoreHorizSharp";
 import DeleteIcon from "@mui/icons-material/Delete";
-
+import Navbar from '../navBar/Navbar'
 import Card from "../card/Card";
 import { useRecoilState } from "recoil";
 import { data } from "../../atom/Atom";
+import MainNavbar from "../mainNavbar/MainNavbar";
 
 export default function Board() {
   const [List, setList] = useRecoilState(data);
@@ -63,11 +62,19 @@ export default function Board() {
     setList(FilteredList);
   }
   return (
-    <Grid
+    <>
+    {/* <MainNavbar/> */}
+    {/* <Navbar /> */}
+    <Grid className={styles.mainContainer}
       container
       sx={{
-        marginTop: "1rem",
-        marginLeft: "1rem",
+        flexWrap: "nowrap",
+        paddingTop: "2rem",
+        paddingLeft: "1rem",
+        paddingRight: "1rem",
+        overflowX:"scroll",
+        height:"100%",
+        // overflow : "hidden",
       }}
     >
       {List.map((item, index) => (
@@ -120,7 +127,7 @@ export default function Board() {
               backgroundColor: "#e7e9ea4a",
               borderRadius: "10px",
               color: "white",
-              width: "22rem",
+              width: "18rem",
               height: "2.5rem",
               marginLeft: "10px",
               "&:hover": {
@@ -157,5 +164,6 @@ export default function Board() {
         )}
       </Grid>
     </Grid>
+    </>
   );
 }
