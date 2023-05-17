@@ -4,13 +4,14 @@ import AddIcon from "@mui/icons-material/Add";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useRecoilState } from "recoil";
-import { tasks } from "../../atom/Atom";
+import { data, tasks } from "../../atom/Atom";
 import style from "./AddCard.module.css";
 
-export default function AddCard() {
+export default function AddCard(props) {
+  const [List, setList] = useRecoilState(data);
+  let id = props.index;
   const [isTaskAdd, setIsTaskAdd] = useState(true);
   const [textarea, setTextarea] = useState("");
-  const [taskData, setTaskData] = useRecoilState(tasks);
 
   const handleShowInput = () => {
     setIsTaskAdd(false);
@@ -21,14 +22,30 @@ export default function AddCard() {
     setTextarea("");
   };
 
-  const handleAddTasks = () => {
-    if (textarea.length == 0) {
-      input.focus();
-    } else if (textarea.length > 0) {
-      setTaskData([...taskData, textarea]);
-      setTextarea("");
-    }
-  };
+  const handleAddTasks = (id) => {
+if(textarea.length===0){
+  textarea.focus()
+}else if(textarea.length>0){
+    let newList = List.map((item) => {
+      if (id === item.id) {
+        let id = Math.random()
+        id = Math.floor(id*80)
+        let newTask = {
+          name: textarea,
+          id:id,
+          description: " ",
+          activity: [],
+        };
+        let newObj = { ...item, list: [...item.list, newTask] };
+        return newObj;
+      } else {
+        return item;
+      }
+    });
+    setList(newList);
+    setTextarea("");
+    localStorage.setItem("List", JSON.stringify(newList));
+  }};
 
   return (
     <div className={style.mainDiv}>
@@ -36,17 +53,15 @@ export default function AddCard() {
         <IconButton
           className={style.IconDiv}
           sx={{
-            // border: "1px solid red",
             borderRadius: "10px",
             height: "2rem",
-            display:"flex",
+            display: "flex",
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "start",
-            gap:"10px",
+            gap: "10px",
             width: "100%",
-            padding:"1.2rem 0rem 1.2rem 1rem",
-
+            padding: "1.2rem 0rem 1.2rem 1rem",
           }}
           onClick={handleShowInput}
         >
@@ -56,14 +71,18 @@ export default function AddCard() {
       ) : (
         <div className={style.secondMainDiv}>
           <textarea
-          placeholder="Enter a title for this card..."
+            placeholder="Enter a title for this card..."
             id="input"
             value={textarea}
             onChange={(e) => setTextarea(e.target.value)}
           />
           <div className={style.addTaskDiv}>
             <div className={style.Btn_icon}>
-              <Button onClick={handleAddTasks} size="small" variant="contained">
+              <Button
+                onClick={() => handleAddTasks(id)}
+                size="small"
+                variant="contained"
+              >
                 Add Card
               </Button>
               <IconButton className={style.icon_Btn} onClick={handleHideInput}>

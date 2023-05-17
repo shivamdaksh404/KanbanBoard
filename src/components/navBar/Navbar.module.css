@@ -1,0 +1,30 @@
+.mainContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 4.5rem;
+    backdrop-filter: blur(5px);
+    border-bottom: 0.01rem solid rgb(255, 255, 255);
+}
+.leftContainer{
+    width: 50%;
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    /* justify-content: start; */
+    align-items: center;
+    margin-left: 2rem;
+}
+h1{
+    color: antiquewhite;
+}
+.rightContainer{
+    width: 50%;
+    display: flex;
+    justify-content: end;
+    padding-right: 2rem;
+    align-items: center;
+    gap: 10px;
+    list-style: none;
+}

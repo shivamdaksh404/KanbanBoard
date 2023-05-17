@@ -4,6 +4,10 @@
 
 
 }
+/* .addCard{
+
+    min-width: 50rem;
+} */
 .taskLists{
     list-style: none;
     font-size: large;
@@ -12,11 +16,20 @@
     background: #ffffff;
     border: 2px solid rgb(221, 221, 221);
     padding-left: 1rem;
-    height: 2.5rem;
+    min-height: 3.1rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    /* max-width: 22rem; */
+    overflow-wrap: anywhere;
+}
+.icon_btn{
+    display: flex;
+    z-index: 5;
+    margin: 5px;
+    position: relative;
+    /* left: 18rem; */
 }
 
 .taskLists:hover{

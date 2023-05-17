@@ -1,25 +1,21 @@
 import React from "react";
-import { Grid } from "@mui/material";
-import Todo from "./components/todo/Todo";
-import Card from './components/card/Card'
+import styles from "./App.module.css";
+import Board from "./components/board/Board";
 
-
+import { Routes, Route } from "react-router-dom";
+import PopUp from "./components/popup/PopUp";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import Home from './components/Home/Home'
 export default function App() {
   return (
-    <Grid container >
-      <Grid md={3} sx={{border:'1px solid'}}>
-        <Todo/>
-      </Grid>
-      
-      <Grid md={3} sx={{border:'1px solid'}}>
-      <p>second column</p>
-      </Grid>
-
-      <Grid md={3} sx={{border:'1px solid'}}>
-        <p>third column</p>
-      </Grid>
-  <Card/>
-    </Grid>
+   <>
+    <Routes>
+      {/* <Route path="/" element={<Board />} /> */}
+      <Route path="/" element={<Home />} />
+      <Route path="/popup" element={<PopUp />} />
+    </Routes>
+   </> 
   );
-
 }
