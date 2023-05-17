@@ -136,7 +136,7 @@ function Board() {
               variant="outlined"
               onClick={handleClick}
               startIcon={<AddSharpIcon />}
-              // className={styles.btn}
+              className={styles.btn}
               sx={{
                 border: "none",
                 backgroundColor: "#e7e9ea4a",
@@ -155,14 +155,14 @@ function Board() {
             </Button>
           )}
           {isShow && (
-            <div>
+            <div className={styles.taskAdd}>
               <input
                 type="text"
                 id="input"
                 onChange={handleChange}
                 value={inputvalue}
               />
-              <div>
+              <div className={styles.taskAddBtn}>
                 <Button
                   onClick={handleTaskAdd}
                   variant="contained"
