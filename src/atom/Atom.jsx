@@ -1,19 +1,11 @@
 import { atom } from "recoil";
 
-//Task list is getting added from this (ADDCARD.jsx)
-export const tasks = atom({
-  key: "tasks",
-  default: [],
-});
+const storedLists = JSON.parse(localStorage.getItem("List"));
 
-//Main CardData (mainList fro eg:-todo)
-const storedLists = JSON.parse(localStorage.getItem("Lists"));
-export const data = atom({
-  key: "data",
+export const storess = atom({
+  key: "storess",
   default: storedLists || [],
 });
-
-//card taskname (list tasks)
 export const demo = atom({
   key: "demo",
   default: "",
@@ -29,12 +21,6 @@ export const ListId = atom({
 export const taskIndex = atom({
   key: "taskIndex",
   default: null,
-});
-
-//used to set description only in popup
-export const dummy = atom({
-  key: "dummy",
-  default: "",
 });
 export const descriptionState = atom({
   key: "descriptionState",

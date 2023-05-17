@@ -10,7 +10,7 @@ export default function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Board />} />
-        <Route path="/popup/:listId/:taskId" element={<PopUp />} />
+        <Route path="/popup" element={<PopUp />} />
       </Routes>
     </>
   );
