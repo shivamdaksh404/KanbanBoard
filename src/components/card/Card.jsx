@@ -107,12 +107,11 @@ export default function Card({ name, items, id }) {
                         onMouseOut={() => handleHideEdit(index)}
                       >
                         <div className={style.Cardss}>
-                          <p onClick={() => taskClick(item, index)}>
-                            {item.name}
-                          </p>
+                          <p>{item.name}</p>
                           {isEditVisible === index ? (
                             <div className="icon_btn">
                               <IconButton
+                                onClick={() => taskClick(item, index)}
                                 sx={{
                                   "&:hover": {
                                     borderRadius: "5px",

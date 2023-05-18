@@ -64,11 +64,10 @@
 }
 .Cardss{
     display: flex;
-  width: 100%;
+  width: 90%;
   height: 40px;
   margin: 6px;
   padding: 10px;
-  /* border: 2px solid black; */
   background: #f1e7e7;
   justify-content: space-between;
   align-items: center;

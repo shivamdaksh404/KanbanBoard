@@ -1,25 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Typography from "@mui/material/Typography";
-import { Button, Grid, IconButton } from "@mui/material";
-import Popover from "@mui/material/Popover";
+import { Button, IconButton } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
-
-import PopupState, {
-  bindTrigger,
-  bindPopover,
-  bindDialog,
-} from "material-ui-popup-state";
-import { listClasses } from "@mui/material";
 import styles from "./Board.module.css";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";
-import MoreHorizSharpIcon from "@mui/icons-material/MoreHorizSharp";
-import DeleteIcon from "@mui/icons-material/Delete";
-import Navbar from "../navBar/Navbar";
 import Card from "../card/Card";
 import { useRecoilState } from "recoil";
-// import { data } from "../../atom/Atom";
-import MainNavbar from "../mainNavbar/MainNavbar";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { storess } from "../../atom/Atom";
 
