@@ -7,7 +7,7 @@ import PopUp from "./components/popup/PopUp";
 export default function App() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<Board />} />
         <Route path="/popup/:listId/:taskId" element={<PopUp />} />

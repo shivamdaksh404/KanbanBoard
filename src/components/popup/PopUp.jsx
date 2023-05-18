@@ -145,6 +145,7 @@ export default function PopUp() {
               <input
                 value={listName}
                 onChange={(e) => setListName(e.target.value)}
+                style={{marginLeft:'2.7rem'}}
               />
               <Button onClick={handleUpdateListName}>Update List Name</Button>
             </>
