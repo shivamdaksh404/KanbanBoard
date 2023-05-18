@@ -200,7 +200,9 @@ export default function PopUp() {
         />
         <br /> <br />
         {taskname.activity.map((act) => (
-          <li>User moved this card to {act}</li>
+          <li>
+            User moved this card from {act} to {listName}
+          </li>
         ))}
         <Comments cardName={listName} />
       </div>
