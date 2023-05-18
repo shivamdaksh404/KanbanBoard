@@ -97,9 +97,23 @@ function Board() {
     setisShow(false);
   }
 
+  const handleClearDashboard =() =>{
+    setStores([]);
+    setisShow(false)
+    setisShowBtn(true)
+    localStorage.setItem("List", JSON.stringify([]));
+  }
+
   return (
     <div className={styles.mainContainer}>
-      <div className={styles.wrappercontainer}>
+    <div className={styles.header}>
+    <div className={styles.imageDiv}>
+            <div></div>
+            <h2>KanBan Trello</h2>
+          </div>
+      <button onClick={handleClearDashboard} >Clean All ToDos </button>
+    </div>
+      <div className={styles.wrapperContainer}>
         <DragDropContext onDragEnd={handleDragAndDrop}>
           <Droppable droppableId="ROOT" type="group">
             {(provided) => (
@@ -141,7 +155,7 @@ function Board() {
                 backgroundColor: "#e7e9ea4a",
                 borderRadius: "10px",
                 color: "white",
-                width: "22rem",
+                minWidth: "20rem",
                 height: "2.5rem",
                 marginLeft: "10px",
                 "&:hover": {

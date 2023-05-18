@@ -86,7 +86,7 @@ export default function Card({ name, items, id }) {
                     }}
                   >
                     <IconButton onClick={() => handleListdelete(id)}>
-                      <DeleteIcon fontSize="small" />
+                      <DeleteIcon color="error" fontSize="small"  />
                     </IconButton>
                   </Popover>
                 </div>
@@ -109,7 +109,7 @@ export default function Card({ name, items, id }) {
                         <div className={style.Cardss}>
                           <p>{item.name}</p>
                           {isEditVisible === index ? (
-                            <div className="icon_btn">
+                            <div className={style.icon_btn}>
                               <IconButton
                                 onClick={() => taskClick(item, index)}
                                 sx={{
@@ -120,7 +120,7 @@ export default function Card({ name, items, id }) {
                                 }}
                                 aria-label="edit"
                               >
-                                <EditSharpIcon fontSize="small" />
+                                <EditSharpIcon fontSize="small" color="primary"/>
                               </IconButton>
 
                               <IconButton
@@ -131,10 +131,10 @@ export default function Card({ name, items, id }) {
                                     backgroundColor: "whitesmoke",
                                   },
                                 }}
-                                color="error"
+                                
                                 aria-label="edit"
                               >
-                                <DeleteIcon fontSize="small" />
+                                <DeleteIcon fontSize="small"  color="error"/>
                               </IconButton>
                             </div>
                           ) : (

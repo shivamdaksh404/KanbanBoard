@@ -64,10 +64,14 @@ export default function AddCard(props) {
             gap: "10px",
             width: "100%",
             padding: "1.2rem 0rem 1.2rem 1rem",
+            "&:hover":{
+              backgroundColor: "#f5f5f5",
+              color:"gray"
+            }
           }}
           onClick={handleShowInput}
         >
-          <AddIcon className={style.icon} fontSize="medium" />
+          <AddIcon className={style.icon} fontSize="medium"  />
           <p className={style.cardText}>Add a Card</p>
         </IconButton>
       ) : (

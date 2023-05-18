@@ -51,12 +51,12 @@
     display: flex;
     z-index: 5;
     margin: 5px;
-    position: absolute;
+    position: relative;
     /* height: 2rem;
     width: 5rem; */
     /* border: 1px solid; */
 
-    left: 29em;
+    /* left: 29em; */
 }
 
 .taskLists:hover{
@@ -71,4 +71,11 @@
   background: #f1e7e7;
   justify-content: space-between;
   align-items: center;
-}
+  overflow-wrap: anywhere;
+  border-radius: 10px;
+
+  
+ 
+  }
+
+
