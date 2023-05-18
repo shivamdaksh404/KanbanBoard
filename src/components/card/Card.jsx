@@ -25,6 +25,7 @@ export default function Card({ name, items, id }) {
   const [isEditVisible, setIsEditVisible] = useState("");
 
   const navigate = useNavigate();
+
   const handleShowEdit = (Index) => {
     setIsEditVisible(Index);
   };
@@ -56,70 +57,17 @@ export default function Card({ name, items, id }) {
     setList(newList);
     localStorage.setItem("List", JSON.stringify(newList));
   }
-// <<<<<<< Day_7_Shivam
 
-//   return (
-//     <div>
-//       <div className={style.addCard}>
-//         <div className={style.todoTasks}>
-//           {props.taskData.map((ele, index) => (
-
-//             <>
-//               <li
-//                 key={index}
-//                 onMouseOver={() => handleShowEdit(index)}
-//                 onMouseOut={() => handleHideEdit(index)}
-//                 className={style.taskLists}
-//               >
-//                 <p key={index}>{ele.name}</p>
-
-//                 {isEditVisible === index ? (
-//                   <div className={style.icon_btn} key={index}>
-//                     <IconButton
-//                       sx={{
-//                         "&:hover": {
-//                           borderRadius: "5px",
-//                           backgroundColor: "whitesmoke",
-//                         },
-//                       }}
-//                       aria-label="edit"
-//                       onClick={() => taskClick(ele, index)}
-//                     >
-//                       <EditSharpIcon fontSize="small" />
-//                     </IconButton>
-
-//                     <IconButton
-//                       onClick={() => handleDeleteCard(index)}
-//                       sx={{
-//                         "&:hover": {
-//                           borderRadius: "5px",
-//                           backgroundColor: "whitesmoke",
-//                         },
-//                       }}
-//                       color="error"
-//                       aria-label="edit"
-//                     >
-//                       <DeleteIcon fontSize="small" />
-//                     </IconButton>
-//                   </div>
-//                 ) : (
-//                   ""
-//                 )}
-//               </li>
-//             </>
-//           ))}
-// =======
   return (
     <Droppable droppableId={id}>
       {(provided) => (
         <div
-          // className="items"
           className={style.addCard}
           {...provided.droppableProps}
           ref={provided.innerRef}
         >
           <div className={style.card}>
-            <h1>{name}</h1>
+            <h1 style={{ color: "grey" }}>{name}</h1>
             <PopupState variant="popover" popupId="demo-popup-popover">
               {(popupState) => (
                 <div>
@@ -146,65 +94,64 @@ export default function Card({ name, items, id }) {
             </PopupState>
           </div>
           <div className="items-container">
-            <div 
-            >
+            <div>
               <div className={style.todoTasks}>
                 {items.map((item, index) => (
                   <Draggable draggableId={item.id} index={index} key={item.id}>
                     {(provided) => (
                       <div
-                      className={style.taskLists}
                         {...provided.dragHandleProps}
                         {...provided.draggableProps}
                         ref={provided.innerRef}
                         onMouseOver={() => handleShowEdit(index)}
                         onMouseOut={() => handleHideEdit(index)}
                       >
-                        <p >
-                          {item.name}
-                        </p>
-                        {isEditVisible === index ? (
-                          <div className={style.icon_btn}>
-                            <IconButton onClick={() => taskClick(item, index)}
-                              sx={{ background:"#131313",
-                                  borderRadius: "5px",
-                                "&:hover": {
-                                  borderRadius: "5px",
-                                  backgroundColor: "whitesmoke",
-                                },
-                              }}
-                              aria-label="edit"
-                            >
-                              <EditSharpIcon fontSize="small" />
-                            </IconButton>
+                        <div className={style.Cardss}>
+                          <p onClick={() => taskClick(item, index)}>
+                            {item.name}
+                          </p>
+                          {isEditVisible === index ? (
+                            <div className="icon_btn">
+                              <IconButton
+                                sx={{
+                                  "&:hover": {
+                                    borderRadius: "5px",
+                                    backgroundColor: "whitesmoke",
+                                  },
+                                }}
+                                aria-label="edit"
+                              >
+                                <EditSharpIcon fontSize="small" />
+                              </IconButton>
 
-                            <IconButton
-                              onClick={() => handleDeleteCard(index)}
-                              sx={{
-                                "&:hover": {
-                                  borderRadius: "5px",
-                                  backgroundColor: "whitesmoke",
-                                },
-                              }}
-                              color="error"
-                              aria-label="edit"
-                            >
-                              <DeleteIcon fontSize="small" />
-                            </IconButton>
-                          </div>
-                        ) : (
-                          ""
-                        )}
+                              <IconButton
+                                onClick={() => handleDeleteCard(index)}
+                                sx={{
+                                  "&:hover": {
+                                    borderRadius: "5px",
+                                    backgroundColor: "whitesmoke",
+                                  },
+                                }}
+                                color="error"
+                                aria-label="edit"
+                              >
+                                <DeleteIcon fontSize="small" />
+                              </IconButton>
+                            </div>
+                          ) : (
+                            ""
+                          )}
+                        </div>
                       </div>
                     )}
                   </Draggable>
+                  // </Draggable>
                 ))}
                 {provided.placeholder}
                 <AddCard index={id} />
               </div>
             </div>
           </div>
-{/* // >>>>>>> new-dragNdrop */}
         </div>
       )}
     </Droppable>
