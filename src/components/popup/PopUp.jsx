@@ -53,7 +53,6 @@ export default function PopUp() {
     setIsEditingDescription(false);
   }
 
-
   function handleName(e) {
     setNewTaskname(e.target.value);
     setTaskname((prevTaskname) => ({ ...prevTaskname, name: e.target.value }));
@@ -62,20 +61,20 @@ export default function PopUp() {
   const handleTaskname = (id) => {
     const newList = List.map((item) => {
       if (item.id === listid) {
-        const newTasklist = item.items.map((obj, index) =>
-          index === id ? { ...obj, name: newTaskname } : obj
-        );
+        const newTasklist = item.items.map((obj, index) => {
+          if (index === id) {
+            return { ...obj, name: newTaskname || obj.name };
+          }
+          return obj;
+        });
         return { ...item, items: newTasklist };
       }
       return item;
     });
-    
     setList(newList);
     localStorage.setItem("List", JSON.stringify(newList));
     setIsEditingName(false);
   };
-  
-  
 
   useEffect(() => {
     const listObject = List.find((item) => item.id === listid);
@@ -127,7 +126,6 @@ export default function PopUp() {
                   onChange={handleName}
                   className={popup.tasknameInput}
                 />
-
                 <Button onClick={() => handleTaskname(tindex)}>Save</Button>
               </h2>
             </>
