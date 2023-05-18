@@ -216,7 +216,7 @@ function Board() {
   return (
     <div className={styles.mainContainer} >
       <div 
-      className={styles.wrappercontainer}
+      className={styles.wrapperContainer}
       >
         <DragDropContext onDragEnd={handleDragAndDrop}>
     
@@ -260,7 +260,7 @@ function Board() {
                 backgroundColor: "#e7e9ea4a",
                 borderRadius: "10px",
                 color: "white",
-                width: "22rem",
+                minWidth: "16rem",
                 height: "2.5rem",
                 marginLeft: "10px",
                 "&:hover": {

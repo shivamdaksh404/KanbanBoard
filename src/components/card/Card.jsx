@@ -56,59 +56,7 @@ export default function Card({ name, items, id }) {
     setList(newList);
     localStorage.setItem("List", JSON.stringify(newList));
   }
-// <<<<<<< Day_7_Shivam
 
-//   return (
-//     <div>
-//       <div className={style.addCard}>
-//         <div className={style.todoTasks}>
-//           {props.taskData.map((ele, index) => (
-
-//             <>
-//               <li
-//                 key={index}
-//                 onMouseOver={() => handleShowEdit(index)}
-//                 onMouseOut={() => handleHideEdit(index)}
-//                 className={style.taskLists}
-//               >
-//                 <p key={index}>{ele.name}</p>
-
-//                 {isEditVisible === index ? (
-//                   <div className={style.icon_btn} key={index}>
-//                     <IconButton
-//                       sx={{
-//                         "&:hover": {
-//                           borderRadius: "5px",
-//                           backgroundColor: "whitesmoke",
-//                         },
-//                       }}
-//                       aria-label="edit"
-//                       onClick={() => taskClick(ele, index)}
-//                     >
-//                       <EditSharpIcon fontSize="small" />
-//                     </IconButton>
-
-//                     <IconButton
-//                       onClick={() => handleDeleteCard(index)}
-//                       sx={{
-//                         "&:hover": {
-//                           borderRadius: "5px",
-//                           backgroundColor: "whitesmoke",
-//                         },
-//                       }}
-//                       color="error"
-//                       aria-label="edit"
-//                     >
-//                       <DeleteIcon fontSize="small" />
-//                     </IconButton>
-//                   </div>
-//                 ) : (
-//                   ""
-//                 )}
-//               </li>
-//             </>
-//           ))}
-// =======
   return (
     <Droppable droppableId={id}>
       {(provided) => (
@@ -119,7 +67,7 @@ export default function Card({ name, items, id }) {
           ref={provided.innerRef}
         >
           <div className={style.card}>
-            <h1>{name}</h1>
+            <h1 className={style.listHeading} >{name}</h1>
             <PopupState variant="popover" popupId="demo-popup-popover">
               {(popupState) => (
                 <div>
@@ -138,7 +86,7 @@ export default function Card({ name, items, id }) {
                     }}
                   >
                     <IconButton onClick={() => handleListdelete(id)}>
-                      <DeleteIcon fontSize="small" />
+                      <DeleteIcon fontSize="small" color="error" />
                     </IconButton>
                   </Popover>
                 </div>
@@ -160,14 +108,14 @@ export default function Card({ name, items, id }) {
                         onMouseOver={() => handleShowEdit(index)}
                         onMouseOut={() => handleHideEdit(index)}
                       >
-                        <p >
+                        <p className={style.taskName}>
                           {item.name}
                         </p>
                         {isEditVisible === index ? (
                           <div className={style.icon_btn}>
                             <IconButton onClick={() => taskClick(item, index)}
-                              sx={{ background:"#131313",
-                                  borderRadius: "5px",
+                              sx={{ 
+                                  
                                 "&:hover": {
                                   borderRadius: "5px",
                                   backgroundColor: "whitesmoke",
@@ -204,7 +152,6 @@ export default function Card({ name, items, id }) {
               </div>
             </div>
           </div>
-{/* // >>>>>>> new-dragNdrop */}
         </div>
       )}
     </Droppable>
