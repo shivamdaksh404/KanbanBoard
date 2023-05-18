@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import popup from "./Popup.module.css";
-// import Comments from "./Comments";
+import popup from "./PopUp.module.css";
+import Comments from "./Comments";
 import { Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import {
+  storess,
   demo,
   descriptionState,
   ListId,
   newTasknameState,
   taskIndex,
 } from "../../atom/Atom";
-import { storess } from "../../atom/Atom";
 
 export default function PopUp() {
   const [List, setList] = useRecoilState(storess);
@@ -53,31 +53,29 @@ export default function PopUp() {
     setIsEditingDescription(false);
   }
 
+
   function handleName(e) {
     setNewTaskname(e.target.value);
     setTaskname((prevTaskname) => ({ ...prevTaskname, name: e.target.value }));
   }
 
-  function handleTaskname(id) {
-    let newList = List.map((item) => {
+  const handleTaskname = (id) => {
+    const newList = List.map((item) => {
       if (item.id === listid) {
-        let newTasklist = item.items.map((obj, index) => {
-          if (index === id) {
-            return { ...obj, name: newTaskname };
-          } else {
-            return obj;
-          }
-        });
+        const newTasklist = item.items.map((obj, index) =>
+          index === id ? { ...obj, name: newTaskname } : obj
+        );
         return { ...item, items: newTasklist };
-      } else {
-        return item;
       }
+      return item;
     });
+    
     setList(newList);
     localStorage.setItem("List", JSON.stringify(newList));
-    setNewTaskname("");
     setIsEditingName(false);
-  }
+  };
+  
+  
 
   useEffect(() => {
     const listObject = List.find((item) => item.id === listid);
@@ -90,11 +88,6 @@ export default function PopUp() {
 
   const handleTaskNameClick = () => {
     setIsEditingName(true);
-  };
-
-  const handleCancelName = () => {
-    setIsEditingName(false);
-    setNewTaskname("");
   };
 
   const handleDescriptionClick = () => {
@@ -112,13 +105,9 @@ export default function PopUp() {
 
   const handleUpdateListName = () => {
     if (listName.trim() !== "") {
-      let newList = List.map((item) => {
-        if (item.id === listid) {
-          return { ...item, name: listName };
-        } else {
-          return item;
-        }
-      });
+      const newList = List.map((item) =>
+        item.id === listid ? { ...item, name: listName } : item
+      );
       setList(newList);
       localStorage.setItem("List", JSON.stringify(newList));
     }
@@ -140,7 +129,6 @@ export default function PopUp() {
                 />
 
                 <Button onClick={() => handleTaskname(tindex)}>Save</Button>
-                <Button onClick={handleCancelName}>Cancel</Button>
               </h2>
             </>
           ) : (
@@ -148,11 +136,10 @@ export default function PopUp() {
               <h2 className={popup.head} onClick={handleTaskNameClick}>
                 <span className={popup.radio}>📻</span>
                 <span>{taskname.name}</span>
-                <Button onClick={() => setIsEditingName(true)}>Edit</Button>
               </h2>
             </>
           )}
-          <span className={popup.closeBtn} onClick={() => navigate("/")}>❌</span>
+          <span onClick={() => navigate("/")}>❌</span>
         </div>
         <div>
           {isEditingListName ? (
@@ -166,32 +153,40 @@ export default function PopUp() {
           ) : (
             <>
               <span className={popup.para}>
-                in list <span>{listName}</span>
+                in list &nbsp;
+                <span onClick={handleListNameClick}>
+                  <u>{listName}</u>
+                </span>
               </span>
-              <Button onClick={handleListNameClick}>Update List Name</Button>
             </>
           )}
-        </div>
-        <div className={popup.des}>
-          <MenuIcon sx={{ marginRight: "1rem" }} /> <h4>Description</h4>
         </div>
         <div className={popup.inputDiv}>
           {isEditingDescription ? (
             <>
+              <div className={popup.des}>
+                <MenuIcon sx={{ marginRight: "1rem" }} /> <h4>Description</h4>
+              </div>
               <input
                 className={popup.firstInputBox}
                 placeholder="Add a more detailed description..."
                 value={description}
                 onChange={handleChange}
-              />
-              <Button onClick={() => addDescription(tindex)}>Save</Button>
-              <Button onClick={handleCancelDescription}>Cancel</Button>
+              />{" "}
+              <br />
+              <div className={popup.buttons}>
+                <Button onClick={() => addDescription(tindex)}>Save</Button>
+                <Button onClick={handleCancelDescription}>Cancel</Button>
+              </div>
             </>
           ) : (
             <>
-              <span style={{ display: "flex" }}>
-                <p>{taskname.description}</p>
+              <div className={popup.des}>
+                <MenuIcon sx={{ marginRight: "1rem" }} /> <h4>Description</h4>
                 <Button onClick={handleDescriptionClick}>Edit</Button>{" "}
+              </div>
+              <span style={{ display: "flex" }}>
+                <p className={popup.description}>{taskname.description}</p>
               </span>
             </>
           )}
@@ -205,7 +200,7 @@ export default function PopUp() {
           placeholder="Write a comment..."
         />
         <br /> <br />
-        {/* <Comments /> */}
+        <Comments cardName={listName} />
       </div>
     </>
   );
