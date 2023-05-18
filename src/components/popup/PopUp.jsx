@@ -145,7 +145,7 @@ export default function PopUp() {
               <input
                 value={listName}
                 onChange={(e) => setListName(e.target.value)}
-                style={{marginLeft:'2.7rem'}}
+                style={{ marginLeft: "2.7rem" }}
               />
               <Button onClick={handleUpdateListName}>Update List Name</Button>
             </>
@@ -199,6 +199,9 @@ export default function PopUp() {
           placeholder="Write a comment..."
         />
         <br /> <br />
+        {taskname.activity.map((act) => (
+          <li>User moved this card to {act}</li>
+        ))}
         <Comments cardName={listName} />
       </div>
     </>
