@@ -7,16 +7,30 @@ import CloseSharpIcon from "@mui/icons-material/CloseSharp";
 import Card from "../card/Card";
 import { useRecoilState } from "recoil";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { storess } from "../../atom/Atom";
+import {
+  storess,
+  srcState,
+  desState,
+  srcDragIdState,
+  desDragIdState,
+} from "../../atom/Atom";
 
 function Board() {
+  const [sourceState, setSourceState] = useRecoilState(srcState);
+  const [destinationState, setDestinationState] = useRecoilState(desState);
+  const [draggableIdSource, setDraggableIdSource] =
+    useRecoilState(srcDragIdState);
+  const [draggableIdDestination, setDraggableIdDestination] =
+    useRecoilState(desDragIdState);
+
   const [stores, setStores] = useRecoilState(storess);
   const [isShow, setisShow] = useState(false);
   const [isShowBtn, setisShowBtn] = useState(true);
   const [inputvalue, setinputvalue] = useState("");
   const handleDragAndDrop = (results) => {
+    console.log("res", results);
     const { source, destination, type } = results;
-
+setDraggableIdSource(results.draggableId);
     if (!destination) return;
 
     if (
@@ -39,6 +53,8 @@ function Board() {
     }
     const itemSourceIndex = source.index;
     const itemDestinationIndex = destination.index;
+    setSourceState(source.droppableId);
+    setDestinationState(destination.droppableId);
 
     const storeSourceIndex = stores.findIndex(
       (store) => store.id === source.droppableId
@@ -69,6 +85,10 @@ function Board() {
 
     setStores(newStores);
     localStorage.setItem("List", JSON.stringify(newStores));
+
+  
+
+  
   };
   function handleChange(e) {
     setinputvalue(e.target.value);

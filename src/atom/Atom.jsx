@@ -31,3 +31,24 @@ export const newTasknameState = atom({
   key: "newTasknameState",
   default: "",
 });
+
+export const srcState = atom({
+  key: "srcState",
+  default: "",
+});
+
+
+export const desState = atom({
+  key: "desState",
+  default: "",
+});
+
+export const srcDragIdState = atom({
+  key: "srcDragIdState",
+  default: "",
+});
+
+export const desDragIdState = atom({
+  key: "desDragIdState",
+  default: "",
+});
