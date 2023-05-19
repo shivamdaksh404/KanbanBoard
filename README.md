@@ -1,5 +1,12 @@
-# Kanban Board (markdown)
-
+# Kanban Board
+ #Deployment Link : https://kanban-board-shivamdaksh404.vercel.app/
+ 
+ #Team MemberName
+  1.Shrutik 
+  2.Shivam Daksh
+  3.Subhdip Paul
+  4.Suraj Kumar Chaudhari 
+ 
 ## Folder Structure
 
 The folder structure for the project is as follows:
