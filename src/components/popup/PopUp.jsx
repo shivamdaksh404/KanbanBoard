@@ -202,8 +202,8 @@ export default function PopUp() {
           placeholder="Write a comment..."
         />
         <br /> <br />
-        {taskname.activity.map((act) => (
-          <li className={popup.TimeNName}>
+        {taskname.activity.map((act,index) => (
+          <li key={index} className={popup.TimeNName}>
             User Moved This Card from <b><u>{act.name}</u></b> to <b><u>{listName}</u></b>. <br/>
             This Card Move on this time : {act.Time} .
           </li>
