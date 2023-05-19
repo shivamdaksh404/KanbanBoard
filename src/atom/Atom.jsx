@@ -37,7 +37,6 @@ export const srcState = atom({
   default: "",
 });
 
-
 export const desState = atom({
   key: "desState",
   default: "",
@@ -50,5 +49,10 @@ export const srcDragIdState = atom({
 
 export const desDragIdState = atom({
   key: "desDragIdState",
+  default: "",
+});
+
+export const timetag = atom({
+  key: "timetag",
   default: "",
 });

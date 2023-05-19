@@ -13,6 +13,7 @@ import {
   desState,
   srcDragIdState,
   desDragIdState,
+  timetag,
 } from "../../atom/Atom";
 
 function Board() {
@@ -27,8 +28,16 @@ function Board() {
   const [isShow, setisShow] = useState(false);
   const [isShowBtn, setisShowBtn] = useState(true);
   const [inputvalue, setinputvalue] = useState("");
+  const[timeTag,setTimeTag] = useRecoilState(timetag)
+  let timestamp = new Date().toLocaleTimeString();
+  let dateStamp = new Date().toLocaleDateString();
+  let combineTime = timestamp + " " + dateStamp;
+
+
+
   const handleDragAndDrop = (results) => {
     console.log("res", results);
+    setTimeTag(combineTime)
     const { source, destination, type } = results;
 setDraggableIdSource(results.draggableId);
     if (!destination) return;

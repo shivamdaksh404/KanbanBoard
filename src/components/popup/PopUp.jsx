@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import popup from "./PopUp.module.css";
 import Comments from "./Comments";
-import { Button } from "@mui/material";
+import { AccordionActions, Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ import {
   ListId,
   newTasknameState,
   taskIndex,
+  timetag,
 } from "../../atom/Atom";
 
 export default function PopUp() {
@@ -26,6 +27,7 @@ export default function PopUp() {
   const [isEditingName, setIsEditingName] = useState(false);
   const [isEditingDescription, setIsEditingDescription] = useState(false);
   const [listName, setListName] = useState("");
+  const[timeTag,setTimeTag] = useRecoilState(timetag)
   const [isEditingListName, setIsEditingListName] = useState(false);
 
   function handleChange(e) {
@@ -112,6 +114,7 @@ export default function PopUp() {
     }
     setIsEditingListName(false);
   };
+  console.log("tis is fromPopo" , timeTag);
 
   return (
     <>
@@ -200,8 +203,9 @@ export default function PopUp() {
         />
         <br /> <br />
         {taskname.activity.map((act) => (
-          <li>
-            User moved this card from {act} to {listName}
+          <li className={popup.TimeNName}>
+            User Moved This Card from <b><u>{act.name}</u></b> to <b><u>{listName}</u></b>. <br/>
+            This Card Move on this time : {act.Time} .
           </li>
         ))}
         <Comments cardName={listName} />

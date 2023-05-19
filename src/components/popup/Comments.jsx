@@ -9,6 +9,7 @@ import {
   ListId,
   srcDragIdState,
   desDragIdState,
+  timetag,
 } from "../../atom/Atom";
 
 export default function Comments({ cardName }) {
@@ -30,6 +31,7 @@ export default function Comments({ cardName }) {
   const [listid, setListid] = useRecoilState(ListId);
 
   const [names, setNames] = useState(""); // Move the declaration here
+  const[timeTag,setTimeTag] = useRecoilState(timetag)
 
   useEffect(() => {
     list.map((item) => {
@@ -44,7 +46,8 @@ export default function Comments({ cardName }) {
       if (item.id === destinationState) {
         let newTasklist = item.items.map((obj) => {
           if (obj.id === draggableIdSource && names) {
-            return { ...obj, activity: [...obj.activity, names] };
+            let newAct = { name:names, Time:timeTag}
+            return { ...obj, activity: [...obj.activity, newAct] };
           } else {
             return obj;
           }
