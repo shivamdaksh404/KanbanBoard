@@ -4,11 +4,14 @@ import AddIcon from "@mui/icons-material/Add";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useRecoilState } from "recoil";
-import { data, tasks } from "../../atom/Atom";
+import { v4 as uuidv4 } from "uuid";
+
+// import { data, tasks } from "../../atom/Atom";
 import style from "./AddCard.module.css";
+import { storess } from "../../atom/Atom";
 
 export default function AddCard(props) {
-  const [List, setList] = useRecoilState(data);
+  const [List, setList] = useRecoilState(storess);
   let id = props.index;
   const [isTaskAdd, setIsTaskAdd] = useState(true);
   const [textarea, setTextarea] = useState("");
@@ -23,29 +26,28 @@ export default function AddCard(props) {
   };
 
   const handleAddTasks = (id) => {
-if(textarea.length===0){
-  textarea.focus()
-}else if(textarea.length>0){
-    let newList = List.map((item) => {
-      if (id === item.id) {
-        let id = Math.random()
-        id = Math.floor(id*80)
-        let newTask = {
-          name: textarea,
-          id:id,
-          description: " ",
-          activity: [],
-        };
-        let newObj = { ...item, list: [...item.list, newTask] };
-        return newObj;
-      } else {
-        return item;
-      }
-    });
-    setList(newList);
-    setTextarea("");
-    localStorage.setItem("List", JSON.stringify(newList));
-  }};
+    if (textarea.length === 0) {
+      textarea.focus();
+    } else if (textarea.length > 0) {
+      let newList = List.map((item) => {
+        if (id === item.id) {
+          let newTask = {
+            name: textarea,
+            id: uuidv4(),
+            description: " ",
+            activity: [],
+          };
+          let newObj = { ...item, items: [...item.items, newTask] };
+          return newObj;
+        } else {
+          return item;
+        }
+      });
+      setList(newList);
+      setTextarea("");
+      localStorage.setItem("List", JSON.stringify(newList));
+    }
+  };
 
   return (
     <div className={style.mainDiv}>
@@ -62,10 +64,14 @@ if(textarea.length===0){
             gap: "10px",
             width: "100%",
             padding: "1.2rem 0rem 1.2rem 1rem",
+            "&:hover":{
+              backgroundColor: "#f5f5f5",
+              color:"gray"
+            }
           }}
           onClick={handleShowInput}
         >
-          <AddIcon className={style.icon} fontSize="medium" />
+          <AddIcon className={style.icon} fontSize="medium"  />
           <p className={style.cardText}>Add a Card</p>
         </IconButton>
       ) : (

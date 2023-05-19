@@ -1,35 +1,31 @@
-import React, { useEffect, useState } from "react";
-import style from "./Card.module.css";
+import { Draggable, Droppable } from "react-beautiful-dnd";
 import AddCard from "./AddCard";
-import { IconButton } from "@mui/material";
-import EditSharpIcon from "@mui/icons-material/EditSharp";
-import DeleteIcon from "@mui/icons-material/Delete";
-
-import { useNavigate } from "react-router-dom";
+import { ListId, demo, storess, taskIndex } from "../../atom/Atom";
 import { useRecoilState } from "recoil";
-import { data, demo, ListId, taskIndex } from "../../atom/Atom";
+import { useNavigate } from "react-router-dom";
+import style from "./Card.module.css";
+import PopupState, {
+  bindTrigger,
+  bindPopover,
+  bindDialog,
+} from "material-ui-popup-state";
+import EditSharpIcon from "@mui/icons-material/EditSharp";
+//   import AddSharpIcon from "@mui/icons-material/AddSharp";
+//   import CloseSharpIcon from "@mui/icons-material/CloseSharp";
+import MoreHorizSharpIcon from "@mui/icons-material/MoreHorizSharp";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { IconButton, Popover } from "@mui/material";
+import { useState } from "react";
 
-export default function Card(props) {
-  const [List, setList] = useRecoilState(data);
-  const [name, setname] = useRecoilState(demo);
+export default function Card({ name, items, id }) {
+  const [List, setList] = useRecoilState(storess);
+  const [task, settask] = useRecoilState(demo);
   const [tindex, settindex] = useRecoilState(taskIndex);
-  const [id, setid] = useRecoilState(ListId);
+  const [lid, setlid] = useRecoilState(ListId);
+  const [isEditVisible, setIsEditVisible] = useState("");
+
   const navigate = useNavigate();
 
-  const [isEditVisible, setIsEditVisible] = useState("");
-  useEffect(() => {
-    const storedList = localStorage.getItem("List");
-    if (storedList) {
-      setList(JSON.parse(storedList));
-    }
-  }, []);
-
-  function taskClick(taskname, index) {
-    setname(taskname);
-    settindex(index);
-    setid(props.index);
-    navigate("/popup");
-  }
   const handleShowEdit = (Index) => {
     setIsEditVisible(Index);
   };
@@ -37,11 +33,23 @@ export default function Card(props) {
     setIsEditVisible(-1);
   };
 
+  function taskClick(taskname, index) {
+    settask(taskname);
+    settindex(index);
+    setlid(id);
+    navigate(`/popup/${id}/${index}`);
+  }
+  function handleListdelete(id) {
+    let FilteredList = List.filter((obj) => id !== obj.id);
+    localStorage.setItem("List", JSON.stringify(FilteredList));
+    setList(FilteredList);
+  }
   function handleDeleteCard(index) {
     let newList = List.map((item) => {
-      if (item.id === props.index) {
+      if (item.id === id) {
         let updatedItem = { ...item };
-        updatedItem.list = updatedItem.list.filter((_, id) => index !== id);
+        updatedItem.items = updatedItem.items.filter((_, id) => index !== id);
+
         return updatedItem;
       }
       return item;
@@ -51,57 +59,100 @@ export default function Card(props) {
   }
 
   return (
-    <div>
-      <div className={style.addCard}>
-        <div className={style.todoTasks}>
-          {props.taskData.map((ele, index) => (
-            <>
-              <li
-                key={index}
-                onMouseOver={() => handleShowEdit(index)}
-                onMouseOut={() => handleHideEdit(index)}
-                className={style.taskLists}
-              >
-                <p>{ele.name}</p>
-
-                {isEditVisible === index ? (
-                  <div className={style.icon_btn}>
-                    <IconButton
-                      sx={{
-                        "&:hover": {
-                          borderRadius: "5px",
-                          backgroundColor: "whitesmoke",
-                        },
-                      }}
-                      aria-label="edit"
-                      onClick={() => taskClick(ele, index)}
-                    >
-                      <EditSharpIcon fontSize="small" />
+    <Droppable droppableId={id}>
+      {(provided) => (
+        <div
+          className={style.addCard}
+          {...provided.droppableProps}
+          ref={provided.innerRef}
+        >
+          <div className={style.card}>
+            <h1 style={{ color: "grey" }}>{name}</h1>
+            <PopupState variant="popover" popupId="demo-popup-popover">
+              {(popupState) => (
+                <div>
+                  <IconButton variant="contained" {...bindTrigger(popupState)}>
+                    <MoreHorizSharpIcon />
+                  </IconButton>
+                  <Popover
+                    {...bindPopover(popupState)}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "center",
+                    }}
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "center",
+                    }}
+                  >
+                    <IconButton onClick={() => handleListdelete(id)}>
+                      <DeleteIcon color="error" fontSize="small"  />
                     </IconButton>
+                  </Popover>
+                </div>
+              )}
+            </PopupState>
+          </div>
+          <div className="items-container">
+            <div>
+              <div className={style.todoTasks}>
+                {items.map((item, index) => (
+                  <Draggable draggableId={item.id} index={index} key={item.id}>
+                    {(provided) => (
+                      <div
+                        {...provided.dragHandleProps}
+                        {...provided.draggableProps}
+                        ref={provided.innerRef}
+                        onMouseOver={() => handleShowEdit(index)}
+                        onMouseOut={() => handleHideEdit(index)}
+                      >
+                        <div className={style.Cardss}>
+                          <p>{item.name}</p>
+                          {isEditVisible === index ? (
+                            <div className={style.icon_btn}>
+                              <IconButton
+                                onClick={() => taskClick(item, index)}
+                                sx={{
+                                  "&:hover": {
+                                    borderRadius: "5px",
+                                    backgroundColor: "whitesmoke",
+                                  },
+                                }}
+                                aria-label="edit"
+                              >
+                                <EditSharpIcon fontSize="small" color="primary"/>
+                              </IconButton>
 
-                    <IconButton
-                      onClick={() => handleDeleteCard(index)}
-                      sx={{
-                        "&:hover": {
-                          borderRadius: "5px",
-                          backgroundColor: "whitesmoke",
-                        },
-                      }}
-                      color="error"
-                      aria-label="edit"
-                    >
-                      <DeleteIcon fontSize="small" />
-                    </IconButton>
-                  </div>
-                ) : (
-                  ""
-                )}
-              </li>
-            </>
-          ))}
+                              <IconButton
+                                onClick={() => handleDeleteCard(index)}
+                                sx={{
+                                  "&:hover": {
+                                    borderRadius: "5px",
+                                    backgroundColor: "whitesmoke",
+                                  },
+                                }}
+                                
+                                aria-label="edit"
+                              >
+                                <DeleteIcon fontSize="small"  color="error"/>
+                              </IconButton>
+                            </div>
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </Draggable>
+                  // </Draggable>
+                ))}
+                {provided.placeholder}
+                <AddCard index={id} />
+              </div>
+            </div>
+          </div>
         </div>
-        <AddCard index={props.index} />
-      </div>
-    </div>
+      )}
+    </Droppable>
   );
 }

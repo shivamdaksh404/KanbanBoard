@@ -8,10 +8,8 @@ export default function MainNavbar() {
       <nav className={style.Mnav_background}>
         <div className={style.Mnav_leftDiv}>
           <div className={style.imageDiv}>
-            <div>
-              {/* <img src="https://i.gifer.com/KeSB.gif" alt="" /> */}
-            </div>
-            <h2>Transformer</h2>
+            <div>{/* <img src="https://i.gifer.com/KeSB.gif" alt="" /> */}</div>
+            <h2>KanBan Trello</h2>
           </div>
 
           <p>

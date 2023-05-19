@@ -1,86 +1,153 @@
-.mainContainer{
-  /* height: 100%; */
-}
-.btn{
-   
-  }
-  .taskAdd{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-left: 10px;
-    
-    width: 18rem;
-   /* height: rem; */
-    border-radius: 10px;
-    padding: 1rem ;
-    border: 2px solid transparent;
-    box-shadow: rgb(0 0 0 / 12%) 0px 1px 3px, rgb(0 0 0 / 24%) 0px 1px 2px;
-    background: rgb(251, 251, 251);
-    transition: all 0.2s ease 1s;
-    
-  }
 
-  .taskAdd>input{
-    /* width: fit-content; */
-    padding: 6px 12px;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    appearance: none;
-    border-radius: 4px;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-  }
-   .taskAdd>input:focus{
-        color: #212529;
-        background-color: #fff;
-        border-color: #86b7fe;
-        outline: 0;
-        box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
-    }
-    .listHeading{
-      /* border: 1px solid ; */
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 0.1rem;
-      /* width: fit-content; */
-      overflow-wrap: anywhere;
-    }
-    
+.mainContainer {
+  /* overflow-x: scroll; */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding-right: 2rem; */
+  /* overflow: hidden; */
+  /* border: 1px solid red; */
+}
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 97vw;  
+  height: 5rem; 
+  align-items: center;
+  border: 1px solid whitesmoke;  
+  padding-left: 1rem;
+  padding-right: 1rem;
+  backdrop-filter: blur(5px);
+  box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px 0px;
+  border-radius: 5rem;
+  background-color: #212529;
+}
+.imageDiv{
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  color: whitesmoke;
+}
+.imageDiv>div{
+  background-image: url('https://i.gifer.com/KeSB.gif');
+  height: 50px;
+  width: 50px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: 100%;
+
+}
+button{
+  /* border: 1px solid red; */
+  /* background-color: rebeccapurple; */
   
-  .taskAddBtn{
-    display: flex;
-    gap: 0.5rem;
-  }
-  .card {
-    background-color: #ffffff;
-    border: 1px solid #e6e6e6;
-    border-radius: 10px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    padding: 16px;
-    margin-bottom: 16px;
-    margin-left: 10px;
-    width: 18rem;
-  }
+  display: inline-block;
+  outline: 0;
+  text-align: center;
+  cursor: pointer;
+  border: 0;
+  color: #fff;
+  font-size: 17.5px;
+  border: 2px solid transparent;
+  color: #ffffff;
+  background: transparent;
+  font-weight: 800;
+  line-height: 30px;
+  border-radius: 3rem;
+  padding: 0.5rem;
+  transition: background,color .1s ease-in-out;
+}
+  button:hover {
+      background-color: #ff0000;
+      color: #fff;
   
-  .card button {
-    /* background-color: #4caf50; */
-    /* border: none;
-    border-radius: 4px;
-    color: #ffffff;
-    cursor: pointer;
-    font-size: 14px;
-    padding: 8px 16px;
-    margin-left: 8px; */
-  }
   
-  .card button:hover {
-    /* background-color: #388e3c; */
-  }
+}
+.wrapperContainer{
+  margin: 1rem;
+  overflow-x: scroll;
+  display: flex;
+  /* display: flex; */
+  height: 100%;
+  width: 100%;
+}
+.container{
+  display: flex;
+  /* border: 1px solid green; */
+  flex-direction: row;
   
+}
+
+.taskAdd {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-left: 10px;
+  height:fit-content;
+  width: 18rem;
+  /* height: rem; */
+  border-radius: 10px;
+  padding: 1rem;
+  border: 2px solid transparent;
+  box-shadow: rgb(0 0 0 / 12%) 0px 1px 3px, rgb(0 0 0 / 24%) 0px 1px 2px;
+  background: rgb(251, 251, 251);
+  transition: all 0.2s ease 1s;
+
+}
+
+.taskAdd>input {
+  /* width: fit-content; */
+  padding: 6px 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  appearance: none;
+  border-radius: 4px;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.taskAdd>input:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+}
+
+.listHeading {
+  /* border: 1px solid ; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.1rem;
+  /* width: fit-content; */
+  overflow-wrap: anywhere;
+}
+
+
+.taskAddBtn {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.card {
+  /* background-color: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+  margin-bottom: 16px;
+  margin-left: 10px;
+  width: 18rem;
+  height: auto;
+  border: 1px solid red;
+  gap: 1rem; */
+}
